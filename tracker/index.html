@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Huroof · Work Tracker</title>
+<meta name="description" content="Live view of everything being built for Huroof — business, marketing, curriculum, design and engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7; --panel:#fffdf8; --ink:#1f1b16; --muted:#6f6659; --line:#e6dccb;
+  --accent:#0f766e; --accent-soft:#d6efe9; --warn:#b45309; --warn-soft:#fdecd3;
+  --bad:#b91c1c; --bad-soft:#fde2e2; --ok:#15803d; --ok-soft:#dcf2e1; --doing:#1d4ed8; --doing-soft:#dde7fd;
+  --shadow:0 1px 0 rgba(31,27,22,.04),0 6px 20px -12px rgba(31,27,22,.25);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#14120f; --panel:#1d1a16; --ink:#efe7da; --muted:#a39885; --line:#332e27;
+  --accent:#2dd4bf; --accent-soft:#123a35; --warn:#f59e0b; --warn-soft:#3a2a10; --bad:#f87171; --bad-soft:#3b1717;
+  --ok:#4ade80; --ok-soft:#12301d; --doing:#93b4ff; --doing-soft:#1a2545; --shadow:none;}}
+:root[data-theme="dark"]{
+  --bg:#14120f; --panel:#1d1a16; --ink:#efe7da; --muted:#a39885; --line:#332e27;
+  --accent:#2dd4bf; --accent-soft:#123a35; --warn:#f59e0b; --warn-soft:#3a2a10; --bad:#f87171; --bad-soft:#3b1717;
+  --ok:#4ade80; --ok-soft:#12301d; --doing:#93b4ff; --doing-soft:#1a2545; --shadow:none;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 16px 64px}
+header.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:16px}
+.brand h1{font:700 clamp(28px,5vw,44px)/1 Fraunces,serif;margin:0;letter-spacing:-.01em}
+.brand h1 .ar{font-family:"Noto Naskh Arabic",serif;color:var(--accent);margin-inline-start:10px;font-size:.8em}
+.brand p{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.meta{font:500 12px/1.6 "IBM Plex Mono",monospace;color:var(--muted);text-align:right}
+.meta b{color:var(--ink)}
+.livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+.now{margin:20px 0;background:var(--ink);color:var(--bg);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:center}
+.now .lbl{font:500 11px "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.7;grid-column:1/-1}
+.now .dom{font:500 12px "IBM Plex Mono",monospace;padding:3px 8px;border-radius:99px;background:color-mix(in srgb,var(--bg) 18%,transparent)}
+.now .t{font:600 18px/1.3 "IBM Plex Sans";}
+.now .d{grid-column:1/-1;opacity:.8;font-size:14px}
+.grid{display:grid;gap:16px}
+.domains{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.dom-card{cursor:pointer;transition:transform .12s}
+.dom-card:hover{transform:translateY(-2px)}
+.dom-card.sel{outline:2px solid var(--accent)}
+.dom-card .h{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.dom-card .ico{font-size:20px}
+.dom-card .s{color:var(--muted);font-size:13px;min-height:2.6em;margin:6px 0 10px}
+.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .5s}
+.dom-card .n{font:500 11px "IBM Plex Mono",monospace;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between}
+h2{font:700 22px Fraunces,serif;margin:36px 0 12px;display:flex;align-items:baseline;gap:10px}
+h2 small{font:400 13px "IBM Plex Sans";color:var(--muted)}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.board{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.board{grid-template-columns:1fr}}
+.lane{background:color-mix(in srgb,var(--panel) 55%,transparent);border:1px dashed var(--line);border-radius:12px;padding:10px;min-height:120px}
+.lane h3{margin:2px 4px 10px;font:600 12px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between}
+.task{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c,var(--accent));border-radius:10px;padding:9px 10px;margin-bottom:8px;font-size:13.5px}
+.task .tt{font-weight:600;line-height:1.35}
+.task .tm{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;font:500 11px "IBM Plex Mono",monospace;color:var(--muted)}
+.task .nt{color:var(--muted);font-size:12.5px;margin-top:4px}
+.task a{font-size:12px}
+.pill{padding:1px 7px;border-radius:99px;background:var(--line);color:var(--ink)}
+.log{list-style:none;margin:0;padding:0;max-height:620px;overflow:auto}
+.log li{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.log time{font:500 11px "IBM Plex Mono",monospace;color:var(--muted);padding-top:2px}
+.log .dt{font:500 10.5px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+.ms{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ms .card{position:relative;padding-top:18px}
+.ms .st{position:absolute;top:-9px;left:14px;font:600 10.5px "IBM Plex Mono",monospace;text-transform:uppercase;padding:2px 8px;border-radius:99px}
+.st.done{background:var(--ok-soft);color:var(--ok)} .st.doing{background:var(--doing-soft);color:var(--doing)} .st.todo{background:var(--line);color:var(--muted)} .st.blocked{background:var(--bad-soft);color:var(--bad)}
+.ms .dte{font:500 12px "IBM Plex Mono",monospace;color:var(--muted)}
+.ms .ttl{font-weight:600;margin:4px 0}
+.ms .ds{font-size:13px;color:var(--muted)}
+.needs .card{border-color:var(--warn);background:var(--warn-soft)}
+.needs .card + .card{margin-top:10px}
+.needs b{color:var(--warn)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.kpi .v{font:700 26px Fraunces,serif}
+.kpi .l{font-size:12.5px;color:var(--muted)}
+.dec{font-size:13.5px}.dec li{margin-bottom:10px}.dec .why{color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.links a{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);text-decoration:none;color:var(--ink);font-size:13px;font-weight:500}
+.links a:hover{border-color:var(--accent)}
+.filter{font:500 12px "IBM Plex Mono",monospace;color:var(--muted)}
+.filter button{font:inherit;background:none;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--ink);cursor:pointer;margin-left:6px}
+.commits li{grid-template-columns:70px 1fr}
+.commits code{font:500 11px "IBM Plex Mono",monospace;color:var(--accent)}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
+.err{color:var(--bad)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1 id="pname">Huroof<span class="ar">حروف</span></h1>
+      <p id="ptag">Loading…</p>
+    </div>
+    <div class="meta">
+      <div><span class="livedot"></span>LIVE · auto-refresh 60s</div>
+      <div>Last update: <b id="updated">—</b></div>
+      <div>Phase: <b id="phase">—</b></div>
+      <div>Day <b id="dayn">—</b> of the project</div>
+    </div>
+  </header>
+
+  <section class="now" id="now"><div class="lbl">Working on right now</div><span class="dom">…</span><span class="t">Loading tracker…</span></section>
+
+  <div class="links" id="links"></div>
+
+  <h2>Domains <small>click a domain to filter the board</small></h2>
+  <div class="grid domains" id="domains"></div>
+
+  <h2>Key numbers</h2>
+  <div class="kpis" id="kpis"></div>
+
+  <h2>Board <span class="filter" id="filter"></span></h2>
+  <div class="board" id="board"></div>
+
+  <div class="cols">
+    <div>
+      <h2>Activity log <small>newest first</small></h2>
+      <div class="card"><ul class="log" id="log"></ul></div>
+    </div>
+    <div>
+      <h2>Needs you</h2>
+      <div class="needs" id="needs"></div>
+      <h2>Recent commits</h2>
+      <div class="card"><ul class="log commits" id="commits"><li><span></span><span>Loading…</span></li></ul></div>
+    </div>
+  </div>
+
+  <h2>Roadmap</h2>
+  <div class="ms" id="milestones"></div>
+
+  <h2>Decisions <small>what was decided and why</small></h2>
+  <div class="card"><ol class="dec" id="decisions"></ol></div>
+
+  <footer>Data lives in <a href="https://github.com/shibl/learnArabic/blob/main/tracker/data.json">tracker/data.json</a>; every change is a commit. <span id="src"></span></footer>
+</div>
+<script>
+const REPO='shibl/learnArabic';
+const SOURCES=[`https://raw.githubusercontent.com/${REPO}/main/tracker/data.json`,'data.json'];
+let DATA=null, FILTER=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function ago(iso){if(!iso)return '—';const s=(Date.now()-new Date(iso))/1000;if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' h ago';return Math.floor(s/86400)+' d ago';}
+function hm(iso){const d=new Date(iso);return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+'\n'+d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});}
+async function load(){
+  for(const u of SOURCES){
+    try{const r=await fetch(u+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)continue;const j=await r.json();
+      if(!DATA||!j.project||!DATA.project||new Date(j.project.updated)>=new Date(DATA.project.updated)){DATA=j;$('src').textContent='Source: '+(u.startsWith('http')?'raw GitHub':'Pages');}
+      render();return;}catch(e){}
+  }
+  if(!DATA)$('ptag').innerHTML='<span class="err">Could not load tracker data.</span>';
+}
+function dom(id){return (DATA.domains||[]).find(d=>d.id===id)||{name:id,color:'var(--accent)',icon:'•'}}
+function render(){
+  const D=DATA,P=D.project;
+  $('pname').innerHTML=esc(P.name)+'<span class="ar">'+esc(P.nameAr||'')+'</span>';
+  $('ptag').textContent=P.tagline;
+  $('updated').textContent=ago(P.updated);$('updated').title=P.updated;
+  $('phase').textContent=P.phase;
+  $('dayn').textContent=Math.max(1,Math.floor((Date.now()-new Date(P.started))/864e5)+1);
+  const n=D.now||{},nd=dom(n.domain);
+  $('now').innerHTML=`<div class="lbl">Working on right now · since ${esc(ago(n.since))}</div><span class="dom">${esc(nd.icon)} ${esc(nd.name)}</span><span class="t">${esc(n.title)}</span><div class="d">${esc(n.detail||'')}</div>`;
+  $('links').innerHTML=(D.links||[]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.icon||'↗')} ${esc(l.label)}</a>`).join('');
+  const tasks=D.tasks||[];
+  $('domains').innerHTML=D.domains.map(d=>{const t=tasks.filter(x=>x.domain===d.id),done=t.filter(x=>x.status==='done').length,pct=t.length?Math.round(done/t.length*100):0,doing=t.filter(x=>x.status==='doing').length;
+    return `<div class="card dom-card ${FILTER===d.id?'sel':''}" data-id="${d.id}" style="--accent:${d.color}"><div class="h"><span>${esc(d.name)}</span><span class="ico">${esc(d.icon)}</span></div><div class="s">${esc(d.summary)}</div><div class="bar"><i style="width:${pct}%"></i></div><div class="n"><span>${done}/${t.length} done</span><span>${doing?doing+' active':''}</span></div></div>`}).join('');
+  document.querySelectorAll('.dom-card').forEach(e=>e.onclick=()=>{FILTER=FILTER===e.dataset.id?null:e.dataset.id;render()});
+  $('kpis').innerHTML=(D.metrics||[]).map(m=>`<div class="card kpi"><div class="v">${esc(m.value)}</div><div class="l">${esc(m.label)}${m.target?' · target '+esc(m.target):''}</div></div>`).join('');
+  $('filter').innerHTML=FILTER?`showing ${esc(dom(FILTER).name)}<button id="clr">show all</button>`:'';
+  if(FILTER)$('clr').onclick=()=>{FILTER=null;render()};
+  const lanes=[['doing','In progress'],['todo','Up next'],['blocked','Blocked / waiting'],['done','Done']];
+  const vis=tasks.filter(t=>!FILTER||t.domain===FILTER);
+  $('board').innerHTML=lanes.map(([k,l])=>{let ts=vis.filter(t=>t.status===k);if(k==='done')ts=ts.sort((a,b)=>(b.done||'').localeCompare(a.done||''));
+    return `<div class="lane"><h3><span>${l}</span><span>${ts.length}</span></h3>${ts.map(t=>{const d=dom(t.domain);return `<div class="task" style="--c:${d.color}"><div class="tt">${esc(t.title)}</div>${t.notes?`<div class="nt">${esc(t.notes)}</div>`:''}<div class="tm"><span class="pill">${esc(d.icon)} ${esc(d.name)}</span>${t.done?`<span>✓ ${esc(ago(t.done))}</span>`:''}${(t.links||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ↗</a>`).join('')}</div></div>`}).join('')}</div>`}).join('');
+  $('log').innerHTML=(D.log||[]).filter(l=>!FILTER||l.domain===FILTER).slice(0,80).map(l=>{const d=dom(l.domain);return `<li><time datetime="${esc(l.ts)}" style="white-space:pre">${esc(hm(l.ts))}</time><div><div class="dt" style="color:${d.color}">${esc(d.icon)} ${esc(d.name)}</div>${esc(l.text)}${l.link?` <a href="${esc(l.link)}" target="_blank" rel="noopener">↗</a>`:''}</div></li>`}).join('');
+  $('needs').innerHTML=(D.needsYou||[]).length?(D.needsYou).map(n=>`<div class="card"><b>${esc(n.title)}</b><div style="font-size:13.5px;margin-top:4px">${esc(n.detail)}</div></div>`).join(''):'<div class="card">Nothing needs you right now.</div>';
+  $('milestones').innerHTML=(D.milestones||[]).map(m=>`<div class="card"><span class="st ${esc(m.status)}">${esc(m.status)}</span><div class="dte">${esc(m.date)}</div><div class="ttl">${esc(m.title)}</div><div class="ds">${esc(m.desc||'')}</div></div>`).join('');
+  $('decisions').innerHTML=(D.decisions||[]).slice().reverse().map(d=>`<li><b>${esc(d.title)}</b> <span class="filter">${esc(d.date)}</span><div class="why">${esc(d.why)}</div></li>`).join('');
+}
+async function commits(){
+  try{const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=12`);if(!r.ok)throw 0;const c=await r.json();
+    $('commits').innerHTML=c.map(x=>`<li><time style="white-space:pre">${esc(hm(x.commit.author.date))}</time><div><a href="${esc(x.html_url)}" target="_blank" rel="noopener"><code>${x.sha.slice(0,7)}</code></a> ${esc(x.commit.message.split('\n')[0])}</div></li>`).join('');
+  }catch(e){$('commits').innerHTML=`<li><span></span><span>See <a href="https://github.com/${REPO}/commits/main">commit history</a></span></li>`}
+}
+load();commits();setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
+</script>
+</body>
+</html>

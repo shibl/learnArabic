@@ -1,0 +1,233 @@
+{
+  "project": {
+    "name": "Huroof",
+    "nameAr": "حروف",
+    "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
+    "started": "2026-11-05T17:45:00-05:00",
+    "updated": "2026-11-05T17:47:57-05:00",
+    "phase": "0 · Foundation"
+  },
+  "now": {
+    "domain": "eng",
+    "title": "Setting up the live work tracker",
+    "detail": "Building this dashboard and publishing it on GitHub Pages so every step is visible.",
+    "since": "2026-11-05T17:46:00-05:00"
+  },
+  "links": [
+    {
+      "label": "Repository",
+      "url": "https://github.com/shibl/learnArabic",
+      "icon": "⌥"
+    }
+  ],
+  "domains": [
+    {
+      "id": "biz",
+      "name": "Business",
+      "icon": "📈",
+      "color": "#b45309",
+      "summary": "Vision, market, business model, pricing, legal."
+    },
+    {
+      "id": "product",
+      "name": "Product",
+      "icon": "🧭",
+      "color": "#7c3aed",
+      "summary": "Personas, scope, MVP definition, roadmap."
+    },
+    {
+      "id": "curriculum",
+      "name": "Curriculum",
+      "icon": "📚",
+      "color": "#0f766e",
+      "summary": "Learning path, letters, words, dialect vs. MSA."
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "icon": "🎨",
+      "color": "#db2777",
+      "summary": "Brand, characters, kid-friendly UX."
+    },
+    {
+      "id": "eng",
+      "name": "Engineering",
+      "icon": "🛠️",
+      "color": "#1d4ed8",
+      "summary": "Web app (PWA), audio, progress, hosting."
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "icon": "📣",
+      "color": "#c2410c",
+      "summary": "Landing page, channels, community, launch."
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Letters with lessons",
+      "value": "0 / 28",
+      "target": "28"
+    },
+    {
+      "label": "Mini-games",
+      "value": "0",
+      "target": "4"
+    },
+    {
+      "label": "Strategy docs",
+      "value": "0",
+      "target": "5"
+    },
+    {
+      "label": "Waitlist sign-ups",
+      "value": "0",
+      "target": "500 by launch"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t-tracker",
+      "domain": "eng",
+      "status": "doing",
+      "title": "Live work tracker on GitHub Pages"
+    },
+    {
+      "id": "t-vision",
+      "domain": "biz",
+      "status": "todo",
+      "title": "Vision & problem statement"
+    },
+    {
+      "id": "t-market",
+      "domain": "biz",
+      "status": "todo",
+      "title": "Market sizing: Arab diaspora families"
+    },
+    {
+      "id": "t-comp",
+      "domain": "biz",
+      "status": "todo",
+      "title": "Competitor scan"
+    },
+    {
+      "id": "t-model",
+      "domain": "biz",
+      "status": "todo",
+      "title": "Business model & pricing"
+    },
+    {
+      "id": "t-persona",
+      "domain": "product",
+      "status": "todo",
+      "title": "Personas: child (4–10) and parent"
+    },
+    {
+      "id": "t-mvp",
+      "domain": "product",
+      "status": "todo",
+      "title": "MVP scope definition"
+    },
+    {
+      "id": "t-path",
+      "domain": "curriculum",
+      "status": "todo",
+      "title": "Learning path: levels 0–3"
+    },
+    {
+      "id": "t-letters",
+      "domain": "curriculum",
+      "status": "todo",
+      "title": "Alphabet dataset: 28 letters, forms, example words"
+    },
+    {
+      "id": "t-brand",
+      "domain": "design",
+      "status": "todo",
+      "title": "Brand: name, palette, type, mascot"
+    },
+    {
+      "id": "t-app",
+      "domain": "eng",
+      "status": "todo",
+      "title": "App MVP: letter lessons + audio"
+    },
+    {
+      "id": "t-games",
+      "domain": "eng",
+      "status": "todo",
+      "title": "Mini-games: listen & pick, match forms, trace"
+    },
+    {
+      "id": "t-progress",
+      "domain": "eng",
+      "status": "todo",
+      "title": "Progress, stars & parent view"
+    },
+    {
+      "id": "t-landing",
+      "domain": "marketing",
+      "status": "todo",
+      "title": "Landing page with waitlist"
+    },
+    {
+      "id": "t-gtm",
+      "domain": "marketing",
+      "status": "todo",
+      "title": "Go-to-market & channel plan"
+    }
+  ],
+  "milestones": [
+    {
+      "date": "Nov 5",
+      "title": "Tracker live",
+      "status": "doing",
+      "desc": "Everything visible from day one."
+    },
+    {
+      "date": "Nov 2026",
+      "title": "Strategy foundation",
+      "status": "todo",
+      "desc": "Vision, market, competitors, model, personas."
+    },
+    {
+      "date": "Nov 2026",
+      "title": "Playable alphabet MVP",
+      "status": "todo",
+      "desc": "28 letters, audio, 3 games, progress."
+    },
+    {
+      "date": "Dec 2026",
+      "title": "Landing page + waitlist",
+      "status": "todo",
+      "desc": "Recruit 20 pilot families."
+    },
+    {
+      "date": "Jan 2027",
+      "title": "Family pilot",
+      "status": "todo",
+      "desc": "Test with real kids; measure retention."
+    }
+  ],
+  "decisions": [
+    {
+      "date": "2026-11-05",
+      "title": "Track everything in a JSON file in the repo",
+      "why": "Every update is a git commit, so the history is auditable and the dashboard is just a static page on GitHub Pages — no server to run."
+    }
+  ],
+  "needsYou": [],
+  "log": [
+    {
+      "ts": "2026-11-05T17:47:57-05:00",
+      "domain": "eng",
+      "text": "Tracker dashboard built: domains, board, activity log, roadmap, decisions, live commits."
+    },
+    {
+      "ts": "2026-11-05T17:46:00-05:00",
+      "domain": "eng",
+      "text": "Project kicked off. Repository connected; starting the live work tracker."
+    }
+  ]
+}
