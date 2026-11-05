@@ -1,0 +1,571 @@
+{
+ "1 \u00b7 Ads only (pessimistic ads: $2.50/sign-up, 6% pay \u2192 $42 per payer)": {
+  "params": {},
+  "ad_cac_per_payer": 42,
+  "month12": {
+   "month": 12,
+   "ad_spend": 395,
+   "new_free": 152,
+   "new_paying": 9,
+   "cash_in": 409,
+   "cum_cash": -1091
+  },
+  "growth_m2_to_m12": 0.51,
+  "rows": [
+   {
+    "month": 1,
+    "ad_spend": 1500,
+    "new_free": 522,
+    "new_paying": 31,
+    "cash_in": 806,
+    "cum_cash": -694
+   },
+   {
+    "month": 2,
+    "ad_spend": 806,
+    "new_free": 298,
+    "new_paying": 18,
+    "cash_in": 526,
+    "cum_cash": -974
+   },
+   {
+    "month": 3,
+    "ad_spend": 526,
+    "new_free": 200,
+    "new_paying": 12,
+    "cash_in": 407,
+    "cum_cash": -1093
+   },
+   {
+    "month": 4,
+    "ad_spend": 407,
+    "new_free": 156,
+    "new_paying": 9,
+    "cash_in": 358,
+    "cum_cash": -1142
+   },
+   {
+    "month": 5,
+    "ad_spend": 358,
+    "new_free": 138,
+    "new_paying": 8,
+    "cash_in": 341,
+    "cum_cash": -1159
+   },
+   {
+    "month": 6,
+    "ad_spend": 341,
+    "new_free": 132,
+    "new_paying": 8,
+    "cash_in": 339,
+    "cum_cash": -1161
+   },
+   {
+    "month": 7,
+    "ad_spend": 339,
+    "new_free": 131,
+    "new_paying": 8,
+    "cash_in": 346,
+    "cum_cash": -1154
+   },
+   {
+    "month": 8,
+    "ad_spend": 346,
+    "new_free": 134,
+    "new_paying": 8,
+    "cash_in": 355,
+    "cum_cash": -1145
+   },
+   {
+    "month": 9,
+    "ad_spend": 355,
+    "new_free": 137,
+    "new_paying": 8,
+    "cash_in": 367,
+    "cum_cash": -1133
+   },
+   {
+    "month": 10,
+    "ad_spend": 367,
+    "new_free": 142,
+    "new_paying": 9,
+    "cash_in": 381,
+    "cum_cash": -1119
+   },
+   {
+    "month": 11,
+    "ad_spend": 381,
+    "new_free": 147,
+    "new_paying": 9,
+    "cash_in": 395,
+    "cum_cash": -1105
+   },
+   {
+    "month": 12,
+    "ad_spend": 395,
+    "new_free": 152,
+    "new_paying": 9,
+    "cash_in": 409,
+    "cum_cash": -1091
+   }
+  ]
+ },
+ "2 \u00b7 + Share loop (k=0.4: certificates & child's voice on family WhatsApp)": {
+  "params": {
+   "k": 0.4
+  },
+  "ad_cac_per_payer": 42,
+  "month12": {
+   "month": 12,
+   "ad_spend": 2029,
+   "new_free": 1039,
+   "new_paying": 62,
+   "cash_in": 2252,
+   "cum_cash": 752
+  },
+  "growth_m2_to_m12": 2.45,
+  "rows": [
+   {
+    "month": 1,
+    "ad_spend": 1500,
+    "new_free": 522,
+    "new_paying": 31,
+    "cash_in": 806,
+    "cum_cash": -694
+   },
+   {
+    "month": 2,
+    "ad_spend": 806,
+    "new_free": 424,
+    "new_paying": 25,
+    "cash_in": 720,
+    "cum_cash": -780
+   },
+   {
+    "month": 3,
+    "ad_spend": 720,
+    "new_free": 454,
+    "new_paying": 27,
+    "cash_in": 815,
+    "cum_cash": -685
+   },
+   {
+    "month": 4,
+    "ad_spend": 815,
+    "new_free": 478,
+    "new_paying": 29,
+    "cash_in": 901,
+    "cum_cash": -599
+   },
+   {
+    "month": 5,
+    "ad_spend": 901,
+    "new_free": 518,
+    "new_paying": 31,
+    "cash_in": 1011,
+    "cum_cash": -489
+   },
+   {
+    "month": 6,
+    "ad_spend": 1011,
+    "new_free": 568,
+    "new_paying": 34,
+    "cash_in": 1138,
+    "cum_cash": -362
+   },
+   {
+    "month": 7,
+    "ad_spend": 1138,
+    "new_free": 628,
+    "new_paying": 38,
+    "cash_in": 1283,
+    "cum_cash": -217
+   },
+   {
+    "month": 8,
+    "ad_spend": 1283,
+    "new_free": 697,
+    "new_paying": 42,
+    "cash_in": 1446,
+    "cum_cash": -54
+   },
+   {
+    "month": 9,
+    "ad_spend": 1446,
+    "new_free": 773,
+    "new_paying": 46,
+    "cash_in": 1625,
+    "cum_cash": 125
+   },
+   {
+    "month": 10,
+    "ad_spend": 1625,
+    "new_free": 856,
+    "new_paying": 51,
+    "cash_in": 1820,
+    "cum_cash": 320
+   },
+   {
+    "month": 11,
+    "ad_spend": 1820,
+    "new_free": 945,
+    "new_paying": 57,
+    "cash_in": 2029,
+    "cum_cash": 529
+   },
+   {
+    "month": 12,
+    "ad_spend": 2029,
+    "new_free": 1039,
+    "new_paying": 62,
+    "cash_in": 2252,
+    "cum_cash": 752
+   }
+  ]
+ },
+ "3 \u00b7 + Family gifting (conversion +50%: relatives buy a year as a gift)": {
+  "params": {
+   "k": 0.4,
+   "gift_boost": 0.5
+  },
+  "ad_cac_per_payer": 28,
+  "month12": {
+   "month": 12,
+   "ad_spend": 7802,
+   "new_free": 2729,
+   "new_paying": 246,
+   "cash_in": 8605,
+   "cum_cash": 7105
+  },
+  "growth_m2_to_m12": 4.9,
+  "rows": [
+   {
+    "month": 1,
+    "ad_spend": 1500,
+    "new_free": 522,
+    "new_paying": 47,
+    "cash_in": 1209,
+    "cum_cash": -291
+   },
+   {
+    "month": 2,
+    "ad_spend": 1209,
+    "new_free": 557,
+    "new_paying": 50,
+    "cash_in": 1388,
+    "cum_cash": -112
+   },
+   {
+    "month": 3,
+    "ad_spend": 1388,
+    "new_free": 705,
+    "new_paying": 63,
+    "cash_in": 1829,
+    "cum_cash": 329
+   },
+   {
+    "month": 4,
+    "ad_spend": 1829,
+    "new_free": 877,
+    "new_paying": 79,
+    "cash_in": 2346,
+    "cum_cash": 846
+   },
+   {
+    "month": 5,
+    "ad_spend": 2346,
+    "new_free": 1083,
+    "new_paying": 97,
+    "cash_in": 2966,
+    "cum_cash": 1466
+   },
+   {
+    "month": 6,
+    "ad_spend": 2966,
+    "new_free": 1315,
+    "new_paying": 118,
+    "cash_in": 3676,
+    "cum_cash": 2176
+   },
+   {
+    "month": 7,
+    "ad_spend": 3676,
+    "new_free": 1564,
+    "new_paying": 141,
+    "cash_in": 4454,
+    "cum_cash": 2954
+   },
+   {
+    "month": 8,
+    "ad_spend": 4454,
+    "new_free": 1819,
+    "new_paying": 164,
+    "cash_in": 5279,
+    "cum_cash": 3779
+   },
+   {
+    "month": 9,
+    "ad_spend": 5279,
+    "new_free": 2069,
+    "new_paying": 186,
+    "cash_in": 6125,
+    "cum_cash": 4625
+   },
+   {
+    "month": 10,
+    "ad_spend": 6125,
+    "new_free": 2307,
+    "new_paying": 208,
+    "cash_in": 6972,
+    "cum_cash": 5472
+   },
+   {
+    "month": 11,
+    "ad_spend": 6972,
+    "new_free": 2528,
+    "new_paying": 227,
+    "cash_in": 7802,
+    "cum_cash": 6302
+   },
+   {
+    "month": 12,
+    "ad_spend": 7802,
+    "new_free": 2729,
+    "new_paying": 246,
+    "cash_in": 8605,
+    "cum_cash": 7105
+   }
+  ]
+ },
+ "4 \u00b7 + School partners (2 new schools/month, 20% revenue share)": {
+  "params": {
+   "k": 0.4,
+   "gift_boost": 0.5,
+   "schools_per_month": 2
+  },
+  "ad_cac_per_payer": 28,
+  "month12": {
+   "month": 12,
+   "ad_spend": 9028,
+   "new_free": 3185,
+   "new_paying": 287,
+   "cash_in": 9940,
+   "cum_cash": 8440
+  },
+  "growth_m2_to_m12": 5.39,
+  "rows": [
+   {
+    "month": 1,
+    "ad_spend": 1500,
+    "new_free": 534,
+    "new_paying": 48,
+    "cash_in": 1232,
+    "cum_cash": -268
+   },
+   {
+    "month": 2,
+    "ad_spend": 1232,
+    "new_free": 591,
+    "new_paying": 53,
+    "cash_in": 1458,
+    "cum_cash": -42
+   },
+   {
+    "month": 3,
+    "ad_spend": 1458,
+    "new_free": 772,
+    "new_paying": 69,
+    "cash_in": 1975,
+    "cum_cash": 475
+   },
+   {
+    "month": 4,
+    "ad_spend": 1975,
+    "new_free": 988,
+    "new_paying": 89,
+    "cash_in": 2598,
+    "cum_cash": 1098
+   },
+   {
+    "month": 5,
+    "ad_spend": 2598,
+    "new_free": 1246,
+    "new_paying": 112,
+    "cash_in": 3351,
+    "cum_cash": 1851
+   },
+   {
+    "month": 6,
+    "ad_spend": 3351,
+    "new_free": 1533,
+    "new_paying": 138,
+    "cash_in": 4208,
+    "cum_cash": 2708
+   },
+   {
+    "month": 7,
+    "ad_spend": 4208,
+    "new_free": 1836,
+    "new_paying": 165,
+    "cash_in": 5141,
+    "cum_cash": 3641
+   },
+   {
+    "month": 8,
+    "ad_spend": 5141,
+    "new_free": 2140,
+    "new_paying": 193,
+    "cash_in": 6116,
+    "cum_cash": 4616
+   },
+   {
+    "month": 9,
+    "ad_spend": 6116,
+    "new_free": 2433,
+    "new_paying": 219,
+    "cash_in": 7103,
+    "cum_cash": 5603
+   },
+   {
+    "month": 10,
+    "ad_spend": 7103,
+    "new_free": 2708,
+    "new_paying": 244,
+    "cash_in": 8079,
+    "cum_cash": 6579
+   },
+   {
+    "month": 11,
+    "ad_spend": 8079,
+    "new_free": 2959,
+    "new_paying": 266,
+    "cash_in": 9028,
+    "cum_cash": 7528
+   },
+   {
+    "month": 12,
+    "ad_spend": 9028,
+    "new_free": 3185,
+    "new_paying": 287,
+    "cash_in": 9940,
+    "cum_cash": 8440
+   }
+  ]
+ },
+ "Stress test: worse ads ($4/sign-up) with all loops": {
+  "params": {
+   "cost_per_signup": 4.0,
+   "k": 0.4,
+   "gift_boost": 0.5,
+   "schools_per_month": 2
+  },
+  "ad_cac_per_payer": 44,
+  "month12": {
+   "month": 12,
+   "ad_spend": 2945,
+   "new_free": 1086,
+   "new_paying": 98,
+   "cash_in": 3318,
+   "cum_cash": 1818
+  },
+  "growth_m2_to_m12": 3.8,
+  "rows": [
+   {
+    "month": 1,
+    "ad_spend": 1500,
+    "new_free": 338,
+    "new_paying": 30,
+    "cash_in": 778,
+    "cum_cash": -722
+   },
+   {
+    "month": 2,
+    "ad_spend": 778,
+    "new_free": 286,
+    "new_paying": 26,
+    "cash_in": 714,
+    "cum_cash": -786
+   },
+   {
+    "month": 3,
+    "ad_spend": 714,
+    "new_free": 325,
+    "new_paying": 29,
+    "cash_in": 848,
+    "cum_cash": -652
+   },
+   {
+    "month": 4,
+    "ad_spend": 848,
+    "new_free": 367,
+    "new_paying": 33,
+    "cash_in": 992,
+    "cum_cash": -508
+   },
+   {
+    "month": 5,
+    "ad_spend": 992,
+    "new_free": 426,
+    "new_paying": 38,
+    "cash_in": 1177,
+    "cum_cash": -323
+   },
+   {
+    "month": 6,
+    "ad_spend": 1177,
+    "new_free": 496,
+    "new_paying": 45,
+    "cash_in": 1398,
+    "cum_cash": -102
+   },
+   {
+    "month": 7,
+    "ad_spend": 1398,
+    "new_free": 578,
+    "new_paying": 52,
+    "cash_in": 1652,
+    "cum_cash": 152
+   },
+   {
+    "month": 8,
+    "ad_spend": 1652,
+    "new_free": 668,
+    "new_paying": 60,
+    "cash_in": 1937,
+    "cum_cash": 437
+   },
+   {
+    "month": 9,
+    "ad_spend": 1937,
+    "new_free": 766,
+    "new_paying": 69,
+    "cash_in": 2250,
+    "cum_cash": 750
+   },
+   {
+    "month": 10,
+    "ad_spend": 2250,
+    "new_free": 870,
+    "new_paying": 78,
+    "cash_in": 2587,
+    "cum_cash": 1087
+   },
+   {
+    "month": 11,
+    "ad_spend": 2587,
+    "new_free": 977,
+    "new_paying": 88,
+    "cash_in": 2945,
+    "cum_cash": 1445
+   },
+   {
+    "month": 12,
+    "ad_spend": 2945,
+    "new_free": 1086,
+    "new_paying": 98,
+    "cash_in": 3318,
+    "cum_cash": 1818
+   }
+  ]
+ }
+}

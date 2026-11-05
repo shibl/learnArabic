@@ -4,14 +4,14 @@
     "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T18:06:01-05:00",
+    "updated": "2026-11-05T18:12:20-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
     "domain": "eng",
-    "title": "Waiting on DNS + audio; next: short-vowel lessons",
-    "detail": "Level 1 (فتحة، كسرة، ضمة) lessons and games, ready to use the recorded syllables.",
-    "since": "2026-11-05T18:04:32-05:00"
+    "title": "Building the share loop: island certificate + child's voice",
+    "detail": "Certificate card, on-device voice clip of the child, parent-gated WhatsApp share with referral link.",
+    "since": "2026-11-05T18:12:20-05:00"
   },
   "links": [
     {
@@ -111,6 +111,10 @@
       "label": "Waitlist sign-ups",
       "value": "0",
       "target": "500 by launch"
+    },
+    {
+      "label": "Loop target (k)",
+      "value": "0.4 new families per family"
     }
   ],
   "tasks": [
@@ -411,6 +415,58 @@
       "status": "blocked",
       "title": "Custom domain on sindibad.studio",
       "notes": "Waiting for DNS record (see Needs you)"
+    },
+    {
+      "id": "t-loop",
+      "domain": "marketing",
+      "status": "done",
+      "title": "Growth-loop design & model",
+      "notes": "Ads alone decay at $42/payer; share + gifting + schools loops grow ×5.4/yr, ×3.8 with 60% pricier ads",
+      "done": "2026-11-05T18:12:20-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/11-growth-loops.md"
+        },
+        {
+          "label": "Model",
+          "url": "https://github.com/shibl/learnArabic/blob/main/marketing/growth_loop.py"
+        }
+      ]
+    },
+    {
+      "id": "t-share",
+      "domain": "eng",
+      "status": "doing",
+      "title": "Island certificate + child voice clip + parent-gated WhatsApp share",
+      "notes": "Share loop: target k ≥ 0.2 (break-even), 0.4 (goal)",
+      "started": "2026-11-05T18:12:20-05:00"
+    },
+    {
+      "id": "t-ref",
+      "domain": "eng",
+      "status": "todo",
+      "title": "Anonymous referral codes in share links"
+    },
+    {
+      "id": "t-gift",
+      "domain": "eng",
+      "status": "todo",
+      "title": "'Gift a year' checkout + Eid gift cards",
+      "notes": "Needs payments; ready before Ramadan 2027"
+    },
+    {
+      "id": "t-schoolpartner",
+      "domain": "biz",
+      "status": "todo",
+      "title": "School partner kit: class code, teacher view, 20% revenue share"
+    },
+    {
+      "id": "t-adtest",
+      "domain": "marketing",
+      "status": "todo",
+      "title": "$1–2k ad test: measure cost per sign-up and conversion",
+      "notes": "Turn ads up only if loop metrics hold"
     }
   ],
   "milestones": [
@@ -500,6 +556,16 @@
       "date": "2026-11-05",
       "title": "Labour is free in the financial model",
       "why": "The owner's existing full-time team (already paid) builds, writes and designs; only cash costs (marketing, ads, hosting, legal) are modelled."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Marketing = growth loop, ads only as accelerator",
+      "why": "Child's voice shared on family WhatsApp + relatives gifting + schools earning 20% share recruit and fund new families; ads are scaled only when cost per payer stays under what a payer returns."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "School partners earn 20% of subscriptions they refer",
+      "why": "Weekend schools need funding; revenue share turns them into active promoters at near-zero acquisition cost."
     }
   ],
   "needsYou": [
@@ -517,6 +583,12 @@
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T18:12:20-05:00",
+      "domain": "marketing",
+      "text": "Rethought marketing as a growth loop. Ads alone decay ($42 per paying family vs $26 first-month cash). Adding child-voice sharing, family gifting and school revenue share makes it self-reinforcing: ×5.4 in a year, ×3.8 even with pricier ads.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/11-growth-loops.md"
+    },
     {
       "ts": "2026-11-05T18:06:01-05:00",
       "domain": "finance",
