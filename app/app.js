@@ -1,4 +1,4 @@
-/* Huroof · حروف — MVP web app. No build step, no dependencies. */
+/* Sindibad Letters · حروف سندباد — MVP web app. No build step, no dependencies. */
 'use strict';
 const ZWJ = '‍';
 const AVATARS = ['🦁','🐯','🦊','🐼','🐸','🦄','🐙','🦉','🐢','🐬','🦋','🐞'];
@@ -112,7 +112,7 @@ const VIEWS = {
   profiles() {
     const kids = S.kids.map(k => `<button class="prof" data-id="${k.id}"><div class="av">${k.av}</div><div class="nm">${esc(k.name)}</div><div class="small">⭐ ${Object.values(k.stars).reduce((a, b) => a + b, 0)}</div></button>`).join('');
     app.innerHTML = `${topbar(null, `<button class="chip" id="lang">🌐 ${t('lang')}</button><button class="ib" data-go="gate" aria-label="parents">👪</button>`)}
-      <div class="center"><h1 class="ar" style="font-size:64px;color:var(--teal);margin:0">حُرُوف</h1>
+      <div class="center"><h1 class="ar" style="font-size:56px;color:var(--teal);margin:0">حُرُوفُ سِنْدِبَاد</h1><div class="small" style="margin-top:-6px">Sindibad Letters</div>
       ${hud(t('who'))}
       <div class="grid profiles">${kids}<button class="prof add" data-go="newkid"><div class="av">➕</div><div class="nm">${t('add')}</div></button></div>
       <p class="small">${t('privacy')}</p></div>`;

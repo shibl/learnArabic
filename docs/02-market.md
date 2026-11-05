@@ -3,7 +3,7 @@
 ## Size of the audience
 The Arab diaspora outside the Arab world is commonly estimated at **30–50 million people** ([Wikipedia: Arab diaspora](https://en.wikipedia.org/wiki/Arab_diaspora)). Figures are rough and from different years, so we treat them as orders of magnitude.
 
-| Host country | Estimate (people of Arab origin) | Fit for Huroof v1 |
+| Host country | Estimate (people of Arab origin) | Fit for Sindibad Letters v1 |
 |---|---|---|
 | France | 5.5–7 M | **High** — recent generations, strong Maghrebi Arabic at home, French UI needed |
 | United States | ~3.5–3.7 M | **High** — English UI, many recent arrivals |

@@ -1,4 +1,6 @@
-# Huroof · حروف
+# Sindibad Letters · حروف سندباد
+
+Part of [Sindibad Studios](https://sindibad.studio) — meaningful playful experiences in Arabic.
 
 An app that helps children (4–10) of Arab families living outside the Arab world learn to read, speak and love Arabic.
 

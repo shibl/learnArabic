@@ -1,8 +1,8 @@
 # 07 · Brand basics (v0)
 
-**Working name:** Huroof · حروف (final name pending — see tracker "Needs you").
+**Name:** Sindibad Letters · حروف سندباد — a product of [Sindibad Studios](https://sindibad.studio) (tagline: *Meaningful playful experiences*). Shares its world with the studio game *Sindibad & Yasmina*: islands to explore and a hoopoe guide.
 
-**Guide character:** **Hudhud the hoopoe** (هُدْهُد). A bird found from Morocco to Iraq, recognisable crest, appears in stories across the Arab world — shared heritage, not tied to one country. Hudhud flies between the letter islands and cheers the child on.
+**Guide character:** the hoopoe (هُدْهُد) — to be aligned with the hoopoe guide in *Sindibad & Yasmina*. A bird found from Morocco to Iraq, recognisable crest, appears in stories across the Arab world — shared heritage, not tied to one country. Hudhud flies between the letter islands and cheers the child on.
 
 **Feel:** warm, sunny, hand-made; never "babyish" for 8-year-olds. Big shapes, few words, lots of sound.
 

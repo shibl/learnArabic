@@ -10,7 +10,7 @@
 | **YouTube channels** | All ages | Free | Songs, cartoons | Passive; no reading progression; unsafe recommendations |
 
 ## Our positioning
-> **Huroof is the daily 10-minute Arabic reading habit for kids growing up abroad — built on the Arabic they already hear at home, with parents in the loop.**
+> **Sindibad Letters is the daily 10-minute Arabic reading habit for kids growing up abroad — built on the Arabic they already hear at home, with parents in the loop.**
 
 Three differentiators we will defend:
 1. **Heritage bridge** — every word is linked from the home (dialect) form to the written standard form, with audio for both.
@@ -18,4 +18,4 @@ Three differentiators we will defend:
 3. **Works with weekend schools** — teacher dashboard and homework sets, turning competitors into a distribution channel.
 
 ## Naming note
-"Huroof / حروف" ("letters") is used by many small apps in stores. It's our **working name**; a distinctive brand name is needed before public launch (see Needs you on the tracker).
+Final name: **Sindibad Letters · حروف سندباد**, part of Sindibad Studios. "Sindbad" is a public-domain character, so the name is free to use but other "Sindbad" products exist (a theme park in Casablanca, a classic Egyptian children's magazine); the distinctive, protectable brand is the combination with the studio, the hoopoe guide and the Yasmina universe.

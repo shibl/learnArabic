@@ -13,7 +13,7 @@ What typically happens:
 ## The vision
 > Every child of an Arab family, wherever they grow up, can read a story in Arabic with their grandparents — and enjoy it.
 
-## What Huroof is
+## What Sindibad Letters is
 A playful app for children aged **4–10** that teaches them to **read** Arabic and **connect** it to the Arabic they already hear at home, in **5–10 minute daily sessions**, with the **parent in the loop**.
 
 ## Principles
@@ -25,6 +25,6 @@ A playful app for children aged **4–10** that teaches them to **read** Arabic 
 - **Respect the diversity of the Arab world.** Dialect-aware, culturally broad (not one country's view), and neutral on religion — families add what they want.
 
 ## What success looks like (first year)
-- A child who uses Huroof 5 days a week for 3 months can read all 28 letters in every position and decode simple 3-letter words.
+- A child who uses Sindibad Letters 5 days a week for 3 months can read all 28 letters in every position and decode simple 3-letter words.
 - 40% of families active in week 1 are still active in week 4.
 - Parents say they "feel less guilty and more involved."

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sindibad Letters · Voice Recorder</title>
+<link rel="icon" href="../app/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+:root{--sand:#fbf3e4;--sand2:#f3e6cc;--ink:#2b2118;--teal:#0f8b8d;--teal2:#0b6e70;--coral:#ef6f5c;--sun:#f6b93b;--leaf:#4caf6d;--muted:#7d6e5b}
+*{box-sizing:border-box}body{margin:0;background:var(--sand);color:var(--ink);font:500 17px/1.45 "Baloo Bhaijaan 2",system-ui,sans-serif}
+.w{max-width:640px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+h1{font-size:24px;margin:0}
+.bar{height:12px;background:var(--sand2);border-radius:99px;overflow:hidden;margin:12px 0 4px}.bar i{display:block;height:100%;background:var(--leaf)}
+.small{font-size:14px;color:var(--muted)}
+.card{background:#fff;border-radius:28px;padding:22px;box-shadow:0 6px 0 var(--sand2);text-align:center;margin:16px 0}
+.kind{display:inline-block;background:var(--sand);border-radius:99px;padding:3px 12px;font-weight:700;font-size:15px}
+.say{font-size:clamp(72px,22vw,130px);line-height:1.25;color:var(--teal);direction:rtl;margin:8px 0}
+.how{color:var(--muted);font-size:15px;min-height:1.5em}
+.ex{font-size:26px}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:14px}
+button{font:inherit;cursor:pointer;border:0}
+.rec{width:96px;height:96px;border-radius:50%;background:var(--coral);color:#fff;font-size:15px;font-weight:800;box-shadow:0 5px 0 #c4513f}
+.rec.on{animation:pulse 1s infinite;background:#d63c26}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.ib{width:60px;height:60px;border-radius:18px;background:var(--sand);font-size:26px}
+.ib:disabled{opacity:.35}
+.done{color:var(--leaf);font-weight:800}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.btn{background:var(--teal);color:#fff;font-weight:800;padding:12px 20px;border-radius:16px;box-shadow:0 4px 0 var(--teal2)}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--sand2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:6px;direction:rtl}
+.grid button{background:#fff;border-radius:10px;padding:4px 0;font-size:20px;box-shadow:0 2px 0 var(--sand2)}
+.grid button.ok{background:#d8f0df}.grid button.cur{outline:3px solid var(--teal)}
+details{background:#fff;border-radius:18px;padding:12px 16px;margin:12px 0}
+summary{font-weight:800;cursor:pointer}
+.meter{height:8px;background:var(--sand2);border-radius:99px;overflow:hidden;width:200px;margin:10px auto 0}.meter i{display:block;height:100%;width:0;background:var(--teal);transition:width .05s}
+.warn{background:#fdecd3;border-radius:14px;padding:10px 14px;font-size:15px}
+input{font:inherit;padding:8px 12px;border-radius:12px;border:2px solid var(--sand2);width:100%}
+</style>
+</head>
+<body>
+<div class="w">
+  <header><h1>🎙️ Sindibad Letters voice recorder</h1><span class="small" id="count">…</span></header>
+  <div class="bar"><i id="prog" style="width:0"></i></div>
+  <div class="small">Recordings are saved in this browser as you go — you can stop and continue later on the same device.</div>
+
+  <details id="help"><summary>How to record (read once)</summary>
+    <ol>
+      <li>Quiet room, phone about 20 cm from your mouth. Soft furnishings help (a closet full of clothes is perfect).</li>
+      <li>Speak clear <b>standard Arabic (فصحى)</b>, warm and friendly, a little slower than normal — like reading to a child.</li>
+      <li>Press <b>Record</b>, wait half a second, say the text <b>once</b>, then press <b>Stop</b>. Listen back; re-record if needed.</li>
+      <li>"Sound" clips are just the short sound (بَ), not the letter name.</li>
+      <li>Same person, same place and same distance for every clip.</li>
+      <li>When finished, press <b>Download all</b> and send the .zip file.</li>
+    </ol>
+  </details>
+
+  <div class="warn" id="warn" hidden></div>
+
+  <div class="card">
+    <span class="kind" id="kind">…</span>
+    <div class="say" id="say">…</div>
+    <div class="how" id="how"></div>
+    <div class="meter"><i id="lvl"></i></div>
+    <div class="ctrl">
+      <button class="ib" id="prev" aria-label="previous">⬅️</button>
+      <button class="rec" id="rec">● Record</button>
+      <button class="ib" id="play" aria-label="play" disabled>▶️</button>
+      <button class="ib" id="next" aria-label="next">➡️</button>
+    </div>
+    <div id="state" class="small" style="margin-top:8px">&nbsp;</div>
+  </div>
+
+  <div class="row">
+    <button class="btn alt" id="skip">Jump to next missing</button>
+    <button class="btn" id="dl">⬇️ Download all (.zip)</button>
+  </div>
+
+  <details><summary>Speaker details (optional, saved in the zip)</summary>
+    <p class="small">Helps us credit you and keep voices consistent.</p>
+    <input id="who" placeholder="Name / how to credit you"><br><br>
+    <input id="from" placeholder="Arabic background (e.g. Syrian, Moroccan…)">
+  </details>
+
+  <details open><summary>All clips</summary><p class="small">Green = recorded. Tap any clip to go to it.</p><div class="grid" id="grid"></div></details>
+</div>
+<script>
+'use strict';
+const VOW={fatha:'َ',kasra:'ِ',damma:'ُ'};
+const VOWN={fatha:'with fatha (a)',kasra:'with kasra (i)',damma:'with damma (u)'};
+let CLIPS=[],i=0,db,have=new Set(),rec,chunks=[],stream,cur=null,an,raf;
+const $=id=>document.getElementById(id);
+
+/* ---------- IndexedDB ---------- */
+function idb(){return new Promise((ok,no)=>{const r=indexedDB.open('huroof-rec',1);r.onupgradeneeded=()=>r.result.createObjectStore('clips');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
+const tx=(m,f)=>new Promise((ok,no)=>{const t=db.transaction('clips',m),s=t.objectStore('clips'),r=f(s);t.oncomplete=()=>ok(r&&r.result);t.onerror=()=>no(t.error)});
+const put=(k,v)=>tx('readwrite',s=>s.put(v,k));
+const get=k=>tx('readonly',s=>s.get(k));
+const keys=()=>tx('readonly',s=>s.getAllKeys());
+
+/* ---------- clip list ---------- */
+async function build(){
+  const D=await (await fetch('../curriculum/letters.json')).json();
+  const order=D.islands.flatMap(x=>x.letters),L=Object.fromEntries(D.letters.map(l=>[l.id,l]));
+  for(const id of order){const l=L[id];
+    CLIPS.push({id:`name-${id}`,text:l.name,kind:'Letter name',how:`Say the name of the letter ${l.char}`,g:l.char});
+    const base=id==='alif'?'أ':l.char;
+    CLIPS.push({id:`sound-${id}`,text:base+VOW.fatha,kind:'Letter sound',how:'Just the short sound, not the name',g:l.char});
+    for(const v of ['fatha','kasra','damma'])CLIPS.push({id:`${v}-${id}`,text:base+VOW[v],kind:'Syllable',how:VOWN[v],g:l.char});
+    l.words.forEach((w,j)=>CLIPS.push({id:`word-${id}-${j}`,text:w.ar,kind:'Word',how:`${w.emoji} ${w.en} · ${w.fr}`,g:l.char}));
+  }
+  // sound-* and fatha-* are the same syllable: record once, reuse
+  CLIPS=CLIPS.filter(c=>!c.id.startsWith('fatha-'));
+}
+function ext(t){return t.includes('mp4')?'m4a':t.includes('ogg')?'ogg':'webm'}
+
+/* ---------- UI ---------- */
+function show(){
+  const c=CLIPS[i];$('kind').textContent=`${c.kind} · ${i+1}/${CLIPS.length}`;$('say').textContent=c.text;$('how').textContent=c.how;
+  $('play').disabled=!have.has(c.id);$('state').innerHTML=have.has(c.id)?'<span class="done">✓ Recorded</span> — tap ▶️ to listen, or record again':'&nbsp;';
+  $('prev').disabled=i===0;$('next').disabled=i===CLIPS.length-1;
+  $('count').textContent=`${have.size} / ${CLIPS.length} recorded`;$('prog').style.width=have.size/CLIPS.length*100+'%';
+  [...$('grid').children].forEach((b,k)=>{b.className=(have.has(CLIPS[k].id)?'ok ':'')+(k===i?'cur':'')});
+}
+function grid(){$('grid').innerHTML=CLIPS.map((c,k)=>`<button title="${c.kind}: ${c.text}" data-k="${k}">${c.kind==='Word'?'📝':c.kind==='Letter name'?c.g:c.text}</button>`).join('');
+  $('grid').onclick=e=>{const b=e.target.closest('button');if(b){i=+b.dataset.k;show();scrollTo({top:0,behavior:'smooth'})}}}
+
+/* ---------- recording ---------- */
+async function mic(){
+  if(stream)return stream;
+  stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:true,autoGainControl:true,channelCount:1}});
+  const ac=new (window.AudioContext||window.webkitAudioContext)(),src=ac.createMediaStreamSource(stream);an=ac.createAnalyser();an.fftSize=512;src.connect(an);
+  const buf=new Uint8Array(an.fftSize);
+  (function loop(){an.getByteTimeDomainData(buf);let m=0;for(const v of buf)m=Math.max(m,Math.abs(v-128));$('lvl').style.width=Math.min(100,m/1.1)+'%';raf=requestAnimationFrame(loop)})();
+  return stream;
+}
+async function toggle(){
+  if(rec&&rec.state==='recording'){rec.stop();return}
+  try{await mic()}catch(e){warn('Microphone blocked. Allow microphone access for this page in your browser settings, then reload.');return}
+  const type=['audio/webm;codecs=opus','audio/mp4','audio/ogg'].find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+  rec=new MediaRecorder(stream,type?{mimeType:type}:{});chunks=[];
+  rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+  rec.onstop=async()=>{
+    const b=new Blob(chunks,{type:rec.mimeType||type||'audio/webm'}),c=CLIPS[i];
+    $('rec').classList.remove('on');$('rec').textContent='● Record';
+    if(b.size<1500){$('state').textContent='That was very short — try again.';return}
+    await put(c.id,b);have.add(c.id);show();playBlob(b);
+  };
+  rec.start();$('rec').classList.add('on');$('rec').textContent='■ Stop';$('state').textContent='Recording… say it once, then press Stop';
+  setTimeout(()=>rec&&rec.state==='recording'&&rec.stop(),6000);
+}
+function playBlob(b){if(cur)cur.pause();cur=new Audio(URL.createObjectURL(b));cur.play().catch(()=>{})}
+function warn(m){$('warn').hidden=false;$('warn').textContent=m}
+
+/* ---------- export ---------- */
+async function download(){
+  if(!have.size){alert('Nothing recorded yet.');return}
+  if(!window.JSZip){warn('Could not load the zip tool. Check your internet connection and reload.');return}
+  $('dl').textContent='Preparing…';
+  const z=new JSZip();const meta={speaker:$('who').value,background:$('from').value,date:new Date().toISOString(),clips:[]};
+  for(const c of CLIPS){if(!have.has(c.id))continue;const b=await get(c.id);const f=`${c.id}.${ext(b.type)}`;z.file('audio/'+f,b);meta.clips.push({file:f,id:c.id,text:c.text,kind:c.kind})}
+  z.file('recordings.json',JSON.stringify(meta,null,2));
+  const out=await z.generateAsync({type:'blob'});const a=document.createElement('a');a.href=URL.createObjectURL(out);
+  a.download=`sindibad-letters-audio-${have.size}-clips.zip`;a.click();$('dl').textContent='⬇️ Download all (.zip)';
+}
+
+/* ---------- boot ---------- */
+(async()=>{
+  if(!navigator.mediaDevices||!window.MediaRecorder)warn('This browser cannot record audio. Please use Chrome, Edge, Firefox or Safari (iOS 14.3+).');
+  try{db=await idb();(await keys()).forEach(k=>have.add(k))}catch(e){warn('This browser is blocking storage (private mode?). Recordings will not be saved if you leave the page.')}
+  await build();grid();
+  for(const f of ['who','from']){try{$(f).value=localStorage.getItem('rec.'+f)||''}catch(e){} $(f).oninput=()=>{try{localStorage.setItem('rec.'+f,$(f).value)}catch(e){}}}
+  i=Math.max(0,CLIPS.findIndex(c=>!have.has(c.id)));if(i<0)i=0;show();
+  if(!have.size)$('help').open=true;
+  $('rec').onclick=toggle;
+  $('play').onclick=async()=>{const b=await get(CLIPS[i].id);b&&playBlob(b)};
+  $('prev').onclick=()=>{i=Math.max(0,i-1);show()};
+  $('next').onclick=()=>{i=Math.min(CLIPS.length-1,i+1);show()};
+  $('skip').onclick=()=>{const k=CLIPS.findIndex((c,k)=>k>i&&!have.has(c.id));const j=k>=0?k:CLIPS.findIndex(c=>!have.has(c.id));if(j>=0){i=j;show()}else alert('Everything is recorded 🎉 Press Download all.')};
+  $('dl').onclick=download;
+  document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.code==='Space'){e.preventDefault();toggle()}if(e.code==='ArrowRight')$('next').click();if(e.code==='ArrowLeft')$('prev').click()});
+})();
+</script>
+</body>
+</html>

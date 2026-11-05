@@ -1,17 +1,17 @@
 {
   "project": {
-    "name": "Huroof",
-    "nameAr": "حروف",
+    "name": "Sindibad Letters",
+    "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:59:36-05:00",
+    "updated": "2026-11-05T18:04:32-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
     "domain": "eng",
-    "title": "Next: native-speaker recording page",
-    "detail": "A simple page where a volunteer records the ~200 audio clips, then the app switches from device voice to real voices.",
-    "since": "2026-11-05T17:58:19-05:00"
+    "title": "Waiting on DNS + audio; next: short-vowel lessons",
+    "detail": "Level 1 (فتحة، كسرة، ضمة) lessons and games, ready to use the recorded syllables.",
+    "since": "2026-11-05T18:04:32-05:00"
   },
   "links": [
     {
@@ -33,6 +33,11 @@
       "label": "Tracker (backup mirror)",
       "url": "https://raw.githack.com/shibl/learnArabic/main/tracker/index.html",
       "icon": "◉"
+    },
+    {
+      "label": "Voice recorder",
+      "url": "https://shibl.github.io/learnArabic/recorder/",
+      "icon": "🎙️"
     }
   ],
   "domains": [
@@ -301,9 +306,10 @@
     {
       "id": "t-audio",
       "domain": "curriculum",
-      "status": "todo",
+      "status": "doing",
       "title": "Commission native-speaker audio (~200 clips)",
-      "notes": "MVP uses device speech voice meanwhile"
+      "notes": "Owner is collecting recordings with the recorder (196 clips)",
+      "started": "2026-11-05T18:04:32-05:00"
     },
     {
       "id": "t-review",
@@ -314,8 +320,19 @@
     {
       "id": "t-audio-rec",
       "domain": "eng",
-      "status": "todo",
-      "title": "Recording page for native-speaker audio"
+      "status": "done",
+      "title": "Recording page for native-speaker audio",
+      "done": "2026-11-05T18:04:32-05:00",
+      "links": [
+        {
+          "label": "Recorder",
+          "url": "https://shibl.github.io/learnArabic/recorder/"
+        },
+        {
+          "label": "Guide",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/10-audio-recording-guide.md"
+        }
+      ]
     },
     {
       "id": "t-finmodel",
@@ -379,6 +396,20 @@
           "url": "https://github.com/shibl/learnArabic/blob/main/marketing/outreach-kit.md"
         }
       ]
+    },
+    {
+      "id": "t-rename",
+      "domain": "biz",
+      "status": "done",
+      "title": "Rename to Sindibad Letters (Sindibad Studios)",
+      "done": "2026-11-05T18:04:32-05:00"
+    },
+    {
+      "id": "t-domain",
+      "domain": "eng",
+      "status": "blocked",
+      "title": "Custom domain on sindibad.studio",
+      "notes": "Waiting for DNS record (see Needs you)"
     }
   ],
   "milestones": [
@@ -453,13 +484,19 @@
       "date": "2026-11-05",
       "title": "Permanent home: shibl.github.io/learnArabic",
       "why": "Free, served straight from the repo, updates on every push; custom domain later once the brand name is chosen."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Name: Sindibad Letters · حروف سندباد, a Sindibad Studios product",
+      "why": "Owner's choice; ties the app to the studio and the Sindibad & Yasmina world (islands, hoopoe guide). Sindbad is public domain, so distinctiveness comes from the studio brand."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Use a subdomain, keep sindibad.studio for the studio site",
+      "why": "The apex already hosts the studio site; arabic.sindibad.studio keeps both live."
     }
   ],
   "needsYou": [
-    {
-      "title": "Native-speaker voice for audio",
-      "detail": "Recorded audio is the biggest quality lever. Do you (or someone you trust) want to record ~200 short clips? I'll prepare the script and a simple recording page."
-    },
     {
       "title": "Founder salary & funding appetite",
       "detail": "The model assumes no salary in 2027. Tell me how much you're willing to invest and whether you want a salary — I'll update the plan."
@@ -469,11 +506,32 @@
       "detail": "Pick one: (a) I build a free Google Form / Tally form you own, or (b) give me an email address to receive sign-ups. No child data collected."
     },
     {
-      "title": "Pick a brand name",
-      "detail": "Shortlist ready: Hudhud (recommended), Jisr Kids, Bayt Huroof, Nuqta — see the outreach kit. Tell me your pick."
+      "title": "Point arabic.sindibad.studio at GitHub (DNS)",
+      "detail": "At your domain registrar add: CNAME record, host 'arabic', value 'shibl.github.io'. Then GitHub → Settings → Pages → Custom domain: arabic.sindibad.studio → Save, and tick Enforce HTTPS when it appears."
+    },
+    {
+      "title": "Send the audio zip",
+      "detail": "When recording is done, attach the zip in chat. Guide: docs/10-audio-recording-guide.md"
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T18:04:32-05:00",
+      "domain": "curriculum",
+      "text": "Audio recording guide written for the speaker.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/10-audio-recording-guide.md"
+    },
+    {
+      "ts": "2026-11-05T18:04:32-05:00",
+      "domain": "eng",
+      "text": "Built the voice recorder: 196 clips (names, sounds, syllables, words), saves progress in the browser, exports one zip. Tested with a simulated mic.",
+      "link": "https://shibl.github.io/learnArabic/recorder/"
+    },
+    {
+      "ts": "2026-11-05T18:04:32-05:00",
+      "domain": "biz",
+      "text": "Owner chose the name Sindibad and owns sindibad.studio. Renamed app, landing page, tracker and docs to Sindibad Letters · حروف سندباد."
+    },
     {
       "ts": "2026-11-05T17:59:36-05:00",
       "domain": "eng",
