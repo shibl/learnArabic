@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:48:20-05:00",
+    "updated": "2026-11-05T17:49:48-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
-    "domain": "biz",
-    "title": "Researching the market and competitors",
-    "detail": "Who already teaches Arabic to diaspora kids, how big the audience is, and what parents pay.",
-    "since": "2026-11-05T17:48:20-05:00"
+    "domain": "curriculum",
+    "title": "Designing the alphabet learning path",
+    "detail": "Ordering the 28 letters by teachability, building the letter dataset with forms and example words.",
+    "since": "2026-11-05T17:49:48-05:00"
   },
   "links": [
     {
@@ -82,7 +82,7 @@
     },
     {
       "label": "Strategy docs",
-      "value": "0",
+      "value": "6",
       "target": "5"
     },
     {
@@ -102,52 +102,96 @@
     {
       "id": "t-vision",
       "domain": "biz",
-      "status": "todo",
-      "title": "Vision & problem statement"
+      "status": "done",
+      "title": "Vision & problem statement",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/01-vision.md"
+        }
+      ]
     },
     {
       "id": "t-market",
       "domain": "biz",
-      "status": "doing",
+      "status": "done",
       "title": "Market sizing: Arab diaspora families",
-      "started": "2026-11-05T17:48:20-05:00"
+      "started": "2026-11-05T17:48:20-05:00",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/02-market.md"
+        }
+      ]
     },
     {
       "id": "t-comp",
       "domain": "biz",
-      "status": "doing",
+      "status": "done",
       "title": "Competitor scan",
-      "started": "2026-11-05T17:48:20-05:00"
+      "started": "2026-11-05T17:48:20-05:00",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/03-competitors.md"
+        }
+      ]
     },
     {
       "id": "t-model",
       "domain": "biz",
-      "status": "todo",
-      "title": "Business model & pricing"
+      "status": "done",
+      "title": "Business model & pricing",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/04-business-model.md"
+        }
+      ]
     },
     {
       "id": "t-persona",
       "domain": "product",
-      "status": "todo",
-      "title": "Personas: child (4–10) and parent"
+      "status": "done",
+      "title": "Personas: child (4–10) and parent",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/05-personas.md"
+        }
+      ]
     },
     {
       "id": "t-mvp",
       "domain": "product",
-      "status": "todo",
-      "title": "MVP scope definition"
+      "status": "done",
+      "title": "MVP scope definition",
+      "done": "2026-11-05T17:49:48-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/06-mvp-scope.md"
+        }
+      ]
     },
     {
       "id": "t-path",
       "domain": "curriculum",
-      "status": "todo",
-      "title": "Learning path: levels 0–3"
+      "status": "doing",
+      "title": "Learning path: levels 0–3",
+      "started": "2026-11-05T17:49:48-05:00"
     },
     {
       "id": "t-letters",
       "domain": "curriculum",
-      "status": "todo",
-      "title": "Alphabet dataset: 28 letters, forms, example words"
+      "status": "doing",
+      "title": "Alphabet dataset: 28 letters, forms, example words",
+      "started": "2026-11-05T17:49:48-05:00"
     },
     {
       "id": "t-brand",
@@ -184,6 +228,12 @@
       "domain": "marketing",
       "status": "todo",
       "title": "Go-to-market & channel plan"
+    },
+    {
+      "id": "t-legal",
+      "domain": "biz",
+      "status": "todo",
+      "title": "Privacy & child-safety plan (COPPA, GDPR-K, Law 25)"
     }
   ],
   "milestones": [
@@ -196,7 +246,7 @@
     {
       "date": "Nov 2026",
       "title": "Strategy foundation",
-      "status": "todo",
+      "status": "done",
       "desc": "Vision, market, competitors, model, personas."
     },
     {
@@ -223,15 +273,63 @@
       "date": "2026-11-05",
       "title": "Track everything in a JSON file in the repo",
       "why": "Every update is a git commit, so the history is auditable and the dashboard is just a static page on GitHub Pages — no server to run."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Target ages 4–10 heritage learners, not adult learners",
+      "why": "They already hear Arabic at home; reading + linking dialect to standard Arabic is the unmet need."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Interface in English & French, content in Arabic",
+      "why": "Kids are schooled in the local language; France and Canada are large early markets."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Web app (PWA) first, app stores later",
+      "why": "Ships fastest, no store fees, works offline, one codebase; wrap for stores in Q2 2027."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Weekend schools are a channel, not a competitor",
+      "why": "They gather motivated families and need homework between classes."
     }
   ],
   "needsYou": [
     {
       "title": "Turn on GitHub Pages (1 minute)",
       "detail": "My access can't change repo settings. In GitHub: Settings → Pages → Source: Deploy from a branch → main / (root) → Save. Then https://shibl.github.io/learnArabic/ goes live. Until then the tracker works at raw.githack.com."
+    },
+    {
+      "title": "Pick a brand name",
+      "detail": "'Huroof' is used by many small apps. I'll propose 3 distinctive names with domain availability; you choose."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T17:49:48-05:00",
+      "domain": "product",
+      "text": "Personas written (2 kids, 2 parents, 1 teacher) and MVP scope locked: 28 letters, 4 games, offline PWA, EN/FR.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/06-mvp-scope.md"
+    },
+    {
+      "ts": "2026-11-05T17:49:48-05:00",
+      "domain": "biz",
+      "text": "Business model: free alphabet forever, family plan $6.99/mo or $49/yr, weekend-school plan $2/student/mo.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/04-business-model.md"
+    },
+    {
+      "ts": "2026-11-05T17:49:48-05:00",
+      "domain": "biz",
+      "text": "Competitor scan: closest is Amal (heritage-focused, $7.99–13.99/mo); Lamsa targets kids inside the Arab world.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/03-competitors.md"
+    },
+    {
+      "ts": "2026-11-05T17:49:48-05:00",
+      "domain": "biz",
+      "text": "Market: diaspora ~30–50M; first-wave target ~250–300k families in FR, US, DE, CA, UK, AU, SE.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/02-market.md"
+    },
     {
       "ts": "2026-11-05T17:48:11-05:00",
       "domain": "eng",
