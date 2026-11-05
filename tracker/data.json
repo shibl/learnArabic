@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:48:11-05:00",
+    "updated": "2026-11-05T17:48:20-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
-    "domain": "eng",
-    "title": "Setting up the live work tracker",
-    "detail": "Building this dashboard and publishing it on GitHub Pages so every step is visible.",
-    "since": "2026-11-05T17:46:00-05:00"
+    "domain": "biz",
+    "title": "Researching the market and competitors",
+    "detail": "Who already teaches Arabic to diaspora kids, how big the audience is, and what parents pay.",
+    "since": "2026-11-05T17:48:20-05:00"
   },
   "links": [
     {
@@ -95,8 +95,9 @@
     {
       "id": "t-tracker",
       "domain": "eng",
-      "status": "doing",
-      "title": "Live work tracker on GitHub Pages"
+      "status": "done",
+      "title": "Live work tracker on GitHub Pages",
+      "done": "2026-11-05T17:48:20-05:00"
     },
     {
       "id": "t-vision",
@@ -107,14 +108,16 @@
     {
       "id": "t-market",
       "domain": "biz",
-      "status": "todo",
-      "title": "Market sizing: Arab diaspora families"
+      "status": "doing",
+      "title": "Market sizing: Arab diaspora families",
+      "started": "2026-11-05T17:48:20-05:00"
     },
     {
       "id": "t-comp",
       "domain": "biz",
-      "status": "todo",
-      "title": "Competitor scan"
+      "status": "doing",
+      "title": "Competitor scan",
+      "started": "2026-11-05T17:48:20-05:00"
     },
     {
       "id": "t-model",
@@ -187,7 +190,7 @@
     {
       "date": "Nov 5",
       "title": "Tracker live",
-      "status": "doing",
+      "status": "done",
       "desc": "Everything visible from day one."
     },
     {
