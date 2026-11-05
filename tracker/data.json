@@ -4,7 +4,7 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:58:19-05:00",
+    "updated": "2026-11-05T17:59:36-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
@@ -20,19 +20,19 @@
       "icon": "⌥"
     },
     {
-      "label": "Tracker (mirror)",
-      "url": "https://raw.githack.com/shibl/learnArabic/main/tracker/index.html",
-      "icon": "◉"
-    },
-    {
       "label": "Play the app",
-      "url": "https://raw.githack.com/shibl/learnArabic/main/app/index.html",
+      "url": "https://shibl.github.io/learnArabic/app/",
       "icon": "▶"
     },
     {
       "label": "Landing page",
-      "url": "https://raw.githack.com/shibl/learnArabic/main/site/index.html",
+      "url": "https://shibl.github.io/learnArabic/site/",
       "icon": "🌐"
+    },
+    {
+      "label": "Tracker (backup mirror)",
+      "url": "https://raw.githack.com/shibl/learnArabic/main/tracker/index.html",
+      "icon": "◉"
     }
   ],
   "domains": [
@@ -247,7 +247,7 @@
       "links": [
         {
           "label": "Play it",
-          "url": "https://raw.githack.com/shibl/learnArabic/main/app/index.html"
+          "url": "https://shibl.github.io/learnArabic/app/"
         }
       ]
     },
@@ -275,7 +275,7 @@
       "links": [
         {
           "label": "Page",
-          "url": "https://raw.githack.com/shibl/learnArabic/main/site/index.html"
+          "url": "https://shibl.github.io/learnArabic/site/"
         }
       ]
     },
@@ -448,13 +448,14 @@
       "date": "2026-11-05",
       "title": "Stay lean until pilot retention is proven",
       "why": "Salaries, not demand, decide the cash need: lean path needs ~$70k vs $250k+ when hiring early."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Permanent home: shibl.github.io/learnArabic",
+      "why": "Free, served straight from the repo, updates on every push; custom domain later once the brand name is chosen."
     }
   ],
   "needsYou": [
-    {
-      "title": "Turn on GitHub Pages (1 minute)",
-      "detail": "My access can't change repo settings. In GitHub: Settings → Pages → Source: Deploy from a branch → main / (root) → Save. Then https://shibl.github.io/learnArabic/ goes live. Until then the tracker works at raw.githack.com."
-    },
     {
       "title": "Native-speaker voice for audio",
       "detail": "Recorded audio is the biggest quality lever. Do you (or someone you trust) want to record ~200 short clips? I'll prepare the script and a simple recording page."
@@ -474,6 +475,12 @@
   ],
   "log": [
     {
+      "ts": "2026-11-05T17:59:36-05:00",
+      "domain": "eng",
+      "text": "Owner turned on GitHub Pages. All links now point to shibl.github.io/learnArabic; githack kept as a backup mirror.",
+      "link": "https://shibl.github.io/learnArabic/tracker/"
+    },
+    {
       "ts": "2026-11-05T17:58:19-05:00",
       "domain": "marketing",
       "text": "Outreach kit ready: WhatsApp messages in EN / FR / Arabic, weekend-school email, and a brand-name shortlist (recommend Hudhud).",
@@ -489,7 +496,7 @@
       "ts": "2026-11-05T17:57:32-05:00",
       "domain": "marketing",
       "text": "Landing page live (EN/FR): 'Your child hears Arabic every day. Now they can read it.' with try-free and pilot call to action.",
-      "link": "https://raw.githack.com/shibl/learnArabic/main/site/index.html"
+      "link": "https://shibl.github.io/learnArabic/site/"
     },
     {
       "ts": "2026-11-05T17:57:32-05:00",
@@ -506,7 +513,7 @@
       "ts": "2026-11-05T17:55:16-05:00",
       "domain": "eng",
       "text": "App MVP playable: profiles, 7 letter islands, letter lessons with forms & picture words, 4 games (listen, first sound, shape match, finger tracing), stars, streaks, parent corner, EN/FR, offline.",
-      "link": "https://raw.githack.com/shibl/learnArabic/main/app/index.html"
+      "link": "https://shibl.github.io/learnArabic/app/"
     },
     {
       "ts": "2026-11-05T17:55:16-05:00",
