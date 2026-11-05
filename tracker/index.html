@@ -201,7 +201,7 @@ async function commits(){
   }catch(e){$('commits').innerHTML=`<li><span></span><span>See <a href="https://github.com/${REPO}/commits/main">commit history</a></span></li>`}
 }
 async function fin(){
-  try{const r=await fetch(`https://raw.githubusercontent.com/${REPO}/main/finance/summary.json?t=`+Date.now(),{cache:'no-store'});const F=await r.json();
+  try{let F;for(const u of[`https://raw.githubusercontent.com/${REPO}/main/finance/summary.json`,'../finance/summary.json']){try{const r=await fetch(u+'?t='+Date.now(),{cache:'no-store'});if(r.ok){F=await r.json();break}}catch(e){}}if(!F)throw 0;
     const m=v=>(v<0?'−$':'$')+Math.abs(Math.round(v/1000))+'k';
     const yrs=Object.keys(F.base.years);
     $('fin').innerHTML=`<tr><th>Scenario</th>${yrs.map(y=>`<th>${y} revenue</th><th>${y} profit</th>`).join('')}<th>Paying families '${yrs.at(-1).slice(2)}</th><th>Break-even</th><th>Cash needed</th></tr>`+
