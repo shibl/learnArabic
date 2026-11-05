@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:49:48-05:00",
+    "updated": "2026-11-05T17:51:51-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
-    "domain": "curriculum",
-    "title": "Designing the alphabet learning path",
-    "detail": "Ordering the 28 letters by teachability, building the letter dataset with forms and example words.",
-    "since": "2026-11-05T17:49:48-05:00"
+    "domain": "design",
+    "title": "Brand basics for the app",
+    "detail": "Palette, type and a friendly mascot direction, then straight into building the app.",
+    "since": "2026-11-05T17:51:51-05:00"
   },
   "links": [
     {
@@ -72,7 +72,7 @@
   "metrics": [
     {
       "label": "Letters with lessons",
-      "value": "0 / 28",
+      "value": "28 / 28 (content)",
       "target": "28"
     },
     {
@@ -182,22 +182,37 @@
     {
       "id": "t-path",
       "domain": "curriculum",
-      "status": "doing",
+      "status": "done",
       "title": "Learning path: levels 0–3",
-      "started": "2026-11-05T17:49:48-05:00"
+      "started": "2026-11-05T17:49:48-05:00",
+      "done": "2026-11-05T17:51:51-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/curriculum/path.md"
+        }
+      ]
     },
     {
       "id": "t-letters",
       "domain": "curriculum",
-      "status": "doing",
+      "status": "done",
       "title": "Alphabet dataset: 28 letters, forms, example words",
-      "started": "2026-11-05T17:49:48-05:00"
+      "started": "2026-11-05T17:49:48-05:00",
+      "done": "2026-11-05T17:51:51-05:00",
+      "links": [
+        {
+          "label": "Data",
+          "url": "https://github.com/shibl/learnArabic/blob/main/curriculum/letters.json"
+        }
+      ]
     },
     {
       "id": "t-brand",
       "domain": "design",
-      "status": "todo",
-      "title": "Brand: name, palette, type, mascot"
+      "status": "doing",
+      "title": "Brand: name, palette, type, mascot",
+      "started": "2026-11-05T17:51:51-05:00"
     },
     {
       "id": "t-app",
@@ -234,6 +249,19 @@
       "domain": "biz",
       "status": "todo",
       "title": "Privacy & child-safety plan (COPPA, GDPR-K, Law 25)"
+    },
+    {
+      "id": "t-audio",
+      "domain": "curriculum",
+      "status": "todo",
+      "title": "Commission native-speaker audio (~200 clips)",
+      "notes": "MVP uses device speech voice meanwhile"
+    },
+    {
+      "id": "t-review",
+      "domain": "curriculum",
+      "status": "todo",
+      "title": "Dialect reviewers for home words"
     }
   ],
   "milestones": [
@@ -293,6 +321,11 @@
       "date": "2026-11-05",
       "title": "Weekend schools are a channel, not a competitor",
       "why": "They gather motivated families and need homework between classes."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Teach standard spelling, show the home word beside it",
+      "why": "Kids read standard Arabic in books but hear dialect at home; showing both says 'both are Arabic' instead of 'you're wrong'."
     }
   ],
   "needsYou": [
@@ -303,9 +336,25 @@
     {
       "title": "Pick a brand name",
       "detail": "'Huroof' is used by many small apps. I'll propose 3 distinctive names with domain availability; you choose."
+    },
+    {
+      "title": "Native-speaker voice for audio",
+      "detail": "Recorded audio is the biggest quality lever. Do you (or someone you trust) want to record ~200 short clips? I'll prepare the script and a simple recording page."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T17:51:51-05:00",
+      "domain": "curriculum",
+      "text": "Letter dataset done: 28 letters, sounds in EN/FR, 84 picture words, home-dialect variants (e.g. طماطم ↔ بندورة / قوطة / مطيشة).",
+      "link": "https://github.com/shibl/learnArabic/blob/main/curriculum/letters.json"
+    },
+    {
+      "ts": "2026-11-05T17:51:51-05:00",
+      "domain": "curriculum",
+      "text": "Learning path: 4 levels; level 0 = 28 letters in 7 'islands' ordered by teachability (shape families first, emphatics last).",
+      "link": "https://github.com/shibl/learnArabic/blob/main/curriculum/path.md"
+    },
     {
       "ts": "2026-11-05T17:49:48-05:00",
       "domain": "product",
