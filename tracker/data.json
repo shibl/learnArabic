@@ -4,7 +4,7 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:47:57-05:00",
+    "updated": "2026-11-05T17:48:11-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
@@ -18,6 +18,11 @@
       "label": "Repository",
       "url": "https://github.com/shibl/learnArabic",
       "icon": "⌥"
+    },
+    {
+      "label": "Tracker (mirror)",
+      "url": "https://raw.githack.com/shibl/learnArabic/main/tracker/index.html",
+      "icon": "◉"
     }
   ],
   "domains": [
@@ -217,8 +222,18 @@
       "why": "Every update is a git commit, so the history is auditable and the dashboard is just a static page on GitHub Pages — no server to run."
     }
   ],
-  "needsYou": [],
+  "needsYou": [
+    {
+      "title": "Turn on GitHub Pages (1 minute)",
+      "detail": "My access can't change repo settings. In GitHub: Settings → Pages → Source: Deploy from a branch → main / (root) → Save. Then https://shibl.github.io/learnArabic/ goes live. Until then the tracker works at raw.githack.com."
+    }
+  ],
   "log": [
+    {
+      "ts": "2026-11-05T17:48:11-05:00",
+      "domain": "eng",
+      "text": "Pushed tracker to GitHub. Enabling Pages needs the repo owner — added to 'Needs you'."
+    },
     {
       "ts": "2026-11-05T17:47:57-05:00",
       "domain": "eng",
