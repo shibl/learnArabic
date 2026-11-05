@@ -91,6 +91,11 @@ h2 small{font:400 13px "IBM Plex Sans";color:var(--muted)}
 .filter button{font:inherit;background:none;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--ink);cursor:pointer;margin-left:6px}
 .commits li{grid-template-columns:70px 1fr}
 .commits code{font:500 11px "IBM Plex Mono",monospace;color:var(--accent)}
+.fin{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+.fin th,.fin td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.fin th:first-child,.fin td:first-child{text-align:left}
+.fin th{font:500 11px "IBM Plex Mono",monospace;text-transform:uppercase;color:var(--muted)}
+.fin .neg{color:var(--bad)}.fin .pos{color:var(--ok)}
 footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
 .err{color:var(--bad)}
 </style>
@@ -119,6 +124,9 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 
   <h2>Key numbers</h2>
   <div class="kpis" id="kpis"></div>
+
+  <h2>Finance <small>3-year model · <a href="https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md" target="_blank" rel="noopener">assumptions</a></small></h2>
+  <div class="card" style="overflow-x:auto"><table class="fin" id="fin"><tr><td>Loading…</td></tr></table></div>
 
   <h2>Board <span class="filter" id="filter"></span></h2>
   <div class="board" id="board"></div>
@@ -192,7 +200,15 @@ async function commits(){
     $('commits').innerHTML=c.map(x=>`<li><time style="white-space:pre">${esc(hm(x.commit.author.date))}</time><div><a href="${esc(x.html_url)}" target="_blank" rel="noopener"><code>${x.sha.slice(0,7)}</code></a> ${esc(x.commit.message.split('\n')[0])}</div></li>`).join('');
   }catch(e){$('commits').innerHTML=`<li><span></span><span>See <a href="https://github.com/${REPO}/commits/main">commit history</a></span></li>`}
 }
-load();commits();setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
+async function fin(){
+  try{const r=await fetch(`https://raw.githubusercontent.com/${REPO}/main/finance/summary.json?t=`+Date.now(),{cache:'no-store'});const F=await r.json();
+    const m=v=>(v<0?'−$':'$')+Math.abs(Math.round(v/1000))+'k';
+    const yrs=Object.keys(F.base.years);
+    $('fin').innerHTML=`<tr><th>Scenario</th>${yrs.map(y=>`<th>${y} revenue</th><th>${y} profit</th>`).join('')}<th>Paying families '${yrs.at(-1).slice(2)}</th><th>Break-even</th><th>Cash needed</th></tr>`+
+      Object.entries(F).map(([k,v])=>`<tr><td><b>${esc(k)}</b></td>${yrs.map(y=>`<td>${m(v.years[y].revenue)}</td><td class="${v.years[y].profit<0?'neg':'pos'}">${m(v.years[y].profit)}</td>`).join('')}<td>${v.years[yrs.at(-1)].paying_families_dec.toLocaleString()}</td><td>${esc(v.breakeven_month||'> 3 yrs')}</td><td>${m(v.max_cash_needed)}</td></tr>`).join('');
+  }catch(e){$('fin').innerHTML='<tr><td>See <a href="https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md">financial model</a></td></tr>'}
+}
+load();commits();fin();setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
 </script>
 </body>
 </html>

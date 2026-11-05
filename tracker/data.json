@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:55:16-05:00",
+    "updated": "2026-11-05T17:57:32-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
     "domain": "marketing",
-    "title": "Landing page with waitlist",
-    "detail": "A page parents land on from WhatsApp groups and weekend schools, explaining Huroof and collecting pilot sign-ups.",
-    "since": "2026-11-05T17:55:16-05:00"
+    "title": "Pilot outreach kit",
+    "detail": "Bilingual WhatsApp message, flyer and the weekend-school list.",
+    "since": "2026-11-05T17:57:32-05:00"
   },
   "links": [
     {
@@ -28,6 +28,11 @@
       "label": "Play the app",
       "url": "https://raw.githack.com/shibl/learnArabic/main/app/index.html",
       "icon": "▶"
+    },
+    {
+      "label": "Landing page",
+      "url": "https://raw.githack.com/shibl/learnArabic/main/site/index.html",
+      "icon": "🌐"
     }
   ],
   "domains": [
@@ -37,6 +42,13 @@
       "icon": "📈",
       "color": "#b45309",
       "summary": "Vision, market, business model, pricing, legal."
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "icon": "💰",
+      "color": "#15803d",
+      "summary": "Financial model, unit economics, funding."
     },
     {
       "id": "product",
@@ -87,7 +99,7 @@
     },
     {
       "label": "Strategy docs",
-      "value": "7",
+      "value": "9",
       "target": "5"
     },
     {
@@ -256,15 +268,29 @@
     {
       "id": "t-landing",
       "domain": "marketing",
-      "status": "doing",
+      "status": "done",
       "title": "Landing page with waitlist",
-      "started": "2026-11-05T17:55:16-05:00"
+      "started": "2026-11-05T17:55:16-05:00",
+      "done": "2026-11-05T17:57:32-05:00",
+      "links": [
+        {
+          "label": "Page",
+          "url": "https://raw.githack.com/shibl/learnArabic/main/site/index.html"
+        }
+      ]
     },
     {
       "id": "t-gtm",
       "domain": "marketing",
-      "status": "todo",
-      "title": "Go-to-market & channel plan"
+      "status": "done",
+      "title": "Go-to-market & channel plan",
+      "done": "2026-11-05T17:57:32-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/08-go-to-market.md"
+        }
+      ]
     },
     {
       "id": "t-legal",
@@ -290,6 +316,48 @@
       "domain": "eng",
       "status": "todo",
       "title": "Recording page for native-speaker audio"
+    },
+    {
+      "id": "t-finmodel",
+      "domain": "finance",
+      "status": "done",
+      "title": "3-year financial model (4 scenarios)",
+      "notes": "Lean path: break-even Sep 2028, ~$70k cash needed. LTV/CAC 5.6×",
+      "done": "2026-11-05T17:57:32-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md"
+        },
+        {
+          "label": "Model",
+          "url": "https://github.com/shibl/learnArabic/blob/main/finance/model.py"
+        }
+      ]
+    },
+    {
+      "id": "t-unit",
+      "domain": "finance",
+      "status": "todo",
+      "title": "Validate unit economics with pilot data (conversion, churn)"
+    },
+    {
+      "id": "t-funding",
+      "domain": "finance",
+      "status": "todo",
+      "title": "Funding plan: bootstrap vs grants vs pre-seed"
+    },
+    {
+      "id": "t-whatsapp",
+      "domain": "marketing",
+      "status": "todo",
+      "title": "Bilingual WhatsApp message + QR flyer"
+    },
+    {
+      "id": "t-schools",
+      "domain": "marketing",
+      "status": "todo",
+      "title": "List of 30 weekend schools to contact"
     }
   ],
   "milestones": [
@@ -354,6 +422,11 @@
       "date": "2026-11-05",
       "title": "Teach standard spelling, show the home word beside it",
       "why": "Kids read standard Arabic in books but hear dialect at home; showing both says 'both are Arabic' instead of 'you're wrong'."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Stay lean until pilot retention is proven",
+      "why": "Salaries, not demand, decide the cash need: lean path needs ~$70k vs $250k+ when hiring early."
     }
   ],
   "needsYou": [
@@ -368,9 +441,35 @@
     {
       "title": "Native-speaker voice for audio",
       "detail": "Recorded audio is the biggest quality lever. Do you (or someone you trust) want to record ~200 short clips? I'll prepare the script and a simple recording page."
+    },
+    {
+      "title": "Founder salary & funding appetite",
+      "detail": "The model assumes no salary in 2027. Tell me how much you're willing to invest and whether you want a salary — I'll update the plan."
+    },
+    {
+      "title": "Pilot sign-up form",
+      "detail": "Pick one: (a) I build a free Google Form / Tally form you own, or (b) give me an email address to receive sign-ups. No child data collected."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T17:57:32-05:00",
+      "domain": "marketing",
+      "text": "Go-to-market: pilot via WhatsApp parent groups, weekend schools, community centres; creators + Ramadan challenge for launch.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/08-go-to-market.md"
+    },
+    {
+      "ts": "2026-11-05T17:57:32-05:00",
+      "domain": "marketing",
+      "text": "Landing page live (EN/FR): 'Your child hears Arabic every day. Now they can read it.' with try-free and pilot call to action.",
+      "link": "https://raw.githack.com/shibl/learnArabic/main/site/index.html"
+    },
+    {
+      "ts": "2026-11-05T17:57:32-05:00",
+      "domain": "finance",
+      "text": "Owner asked for a financial model → built a 3-year monthly model in code with low/base/high/lean scenarios. Lean path breaks even Sep 2028 needing ~$70k; LTV $84 vs CAC $15 (5.6×).",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md"
+    },
     {
       "ts": "2026-11-05T17:55:16-05:00",
       "domain": "eng",
