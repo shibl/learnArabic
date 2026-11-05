@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:57:32-05:00",
+    "updated": "2026-11-05T17:58:19-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
-    "domain": "marketing",
-    "title": "Pilot outreach kit",
-    "detail": "Bilingual WhatsApp message, flyer and the weekend-school list.",
-    "since": "2026-11-05T17:57:32-05:00"
+    "domain": "eng",
+    "title": "Next: native-speaker recording page",
+    "detail": "A simple page where a volunteer records the ~200 audio clips, then the app switches from device voice to real voices.",
+    "since": "2026-11-05T17:58:19-05:00"
   },
   "links": [
     {
@@ -350,14 +350,35 @@
     {
       "id": "t-whatsapp",
       "domain": "marketing",
-      "status": "todo",
-      "title": "Bilingual WhatsApp message + QR flyer"
+      "status": "done",
+      "title": "Bilingual WhatsApp message + QR flyer",
+      "done": "2026-11-05T17:58:19-05:00",
+      "links": [
+        {
+          "label": "Kit",
+          "url": "https://github.com/shibl/learnArabic/blob/main/marketing/outreach-kit.md"
+        }
+      ]
     },
     {
       "id": "t-schools",
       "domain": "marketing",
       "status": "todo",
       "title": "List of 30 weekend schools to contact"
+    },
+    {
+      "id": "t-names",
+      "domain": "biz",
+      "status": "done",
+      "title": "Brand-name shortlist",
+      "notes": "Recommend Hudhud (هدهد); owner decides",
+      "done": "2026-11-05T17:58:19-05:00",
+      "links": [
+        {
+          "label": "Kit",
+          "url": "https://github.com/shibl/learnArabic/blob/main/marketing/outreach-kit.md"
+        }
+      ]
     }
   ],
   "milestones": [
@@ -435,10 +456,6 @@
       "detail": "My access can't change repo settings. In GitHub: Settings → Pages → Source: Deploy from a branch → main / (root) → Save. Then https://shibl.github.io/learnArabic/ goes live. Until then the tracker works at raw.githack.com."
     },
     {
-      "title": "Pick a brand name",
-      "detail": "'Huroof' is used by many small apps. I'll propose 3 distinctive names with domain availability; you choose."
-    },
-    {
       "title": "Native-speaker voice for audio",
       "detail": "Recorded audio is the biggest quality lever. Do you (or someone you trust) want to record ~200 short clips? I'll prepare the script and a simple recording page."
     },
@@ -449,9 +466,19 @@
     {
       "title": "Pilot sign-up form",
       "detail": "Pick one: (a) I build a free Google Form / Tally form you own, or (b) give me an email address to receive sign-ups. No child data collected."
+    },
+    {
+      "title": "Pick a brand name",
+      "detail": "Shortlist ready: Hudhud (recommended), Jisr Kids, Bayt Huroof, Nuqta — see the outreach kit. Tell me your pick."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T17:58:19-05:00",
+      "domain": "marketing",
+      "text": "Outreach kit ready: WhatsApp messages in EN / FR / Arabic, weekend-school email, and a brand-name shortlist (recommend Hudhud).",
+      "link": "https://github.com/shibl/learnArabic/blob/main/marketing/outreach-kit.md"
+    },
     {
       "ts": "2026-11-05T17:57:32-05:00",
       "domain": "marketing",
