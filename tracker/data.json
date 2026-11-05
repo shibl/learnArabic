@@ -4,7 +4,7 @@
     "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T18:04:32-05:00",
+    "updated": "2026-11-05T18:06:01-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
@@ -339,7 +339,7 @@
       "domain": "finance",
       "status": "done",
       "title": "3-year financial model (4 scenarios)",
-      "notes": "Lean path: break-even Sep 2028, ~$70k cash needed. LTV/CAC 5.6×",
+      "notes": "Labour covered by owner's team. Base: break-even May 2028, ~$26k cash needed. LTV/CAC 5.6×",
       "done": "2026-11-05T17:57:32-05:00",
       "links": [
         {
@@ -362,7 +362,8 @@
       "id": "t-funding",
       "domain": "finance",
       "status": "todo",
-      "title": "Funding plan: bootstrap vs grants vs pre-seed"
+      "title": "Funding plan: bootstrap vs grants vs pre-seed",
+      "notes": "Base case self-fundable (~$26k cash); grants optional"
     },
     {
       "id": "t-whatsapp",
@@ -494,13 +495,14 @@
       "date": "2026-11-05",
       "title": "Use a subdomain, keep sindibad.studio for the studio site",
       "why": "The apex already hosts the studio site; arabic.sindibad.studio keeps both live."
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Labour is free in the financial model",
+      "why": "The owner's existing full-time team (already paid) builds, writes and designs; only cash costs (marketing, ads, hosting, legal) are modelled."
     }
   ],
   "needsYou": [
-    {
-      "title": "Founder salary & funding appetite",
-      "detail": "The model assumes no salary in 2027. Tell me how much you're willing to invest and whether you want a salary — I'll update the plan."
-    },
     {
       "title": "Pilot sign-up form",
       "detail": "Pick one: (a) I build a free Google Form / Tally form you own, or (b) give me an email address to receive sign-ups. No child data collected."
@@ -515,6 +517,12 @@
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T18:06:01-05:00",
+      "domain": "finance",
+      "text": "Owner's existing full-time team covers all labour → model updated to cash costs only. Base case: break-even May 2028, ~$26k cash needed, $119k profit in 2029.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md"
+    },
     {
       "ts": "2026-11-05T18:04:32-05:00",
       "domain": "curriculum",

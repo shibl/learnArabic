@@ -14,9 +14,9 @@ SCENARIOS = {
     "low":  dict(new0=80,  g=(0.08, 0.04, 0.02), conv=0.04, churn=0.07, schools_per_month=1),
     "base": dict(new0=150, g=(0.12, 0.06, 0.03), conv=0.06, churn=0.05, schools_per_month=2),
     "high": dict(new0=250, g=(0.15, 0.08, 0.04), conv=0.08, churn=0.04, schools_per_month=4),
-    # base demand, but bootstrapped: no salaries, no second engineer, ads scaled up instead
-    "lean": dict(new0=150, g=(0.12, 0.06, 0.03), conv=0.06, churn=0.05, schools_per_month=2,
-                 over=dict(founder_salary=(0, 0, 0), dev_contractor=(0, 0, 0), paid_ads_budget=(0, 5000, 8000))),
+    # base demand, with a bigger ads budget once the pilot proves retention (LTV/CAC ~5.6x)
+    "base+ads": dict(new0=150, g=(0.12, 0.06, 0.03), conv=0.06, churn=0.05, schools_per_month=2,
+                 over=dict(paid_ads_budget=(0, 6000, 10000))),
 }
 
 A = dict(
@@ -39,11 +39,13 @@ A = dict(
     hosting=lambda paid: 50 + 0.05 * paid,  # static app + audio CDN + accounts
     tools=150,
     legal_monthly=200,
-    one_off={1: 3000 + 5000, 3: 4000},    # month: cost — audio recording + illustration; privacy/legal setup
-    content_contractor=(2000, 3000, 4000),  # curriculum/content part-time, per month in year 1/2/3 (from month 4)
-    dev_contractor=(0, 4000, 6000),         # second engineer, per month by year
+    one_off={3: 4000},                    # month: cost — privacy/legal setup (external lawyer)
+    # LABOUR IS FREE: the owner's full-time team (already paid) covers engineering, content,
+    # design/illustration and audio. Set these above zero to model hiring beyond that team.
+    content_contractor=(0, 0, 0),
+    dev_contractor=(0, 0, 0),
+    founder_salary=(0, 0, 0),
     community_marketing=(1500, 2500, 4000), # creators, flyers, events, per month by year (from month 4)
-    founder_salary=(0, 4000, 8000),         # per month by year — owner's decision
 )
 
 def run(name="base"):

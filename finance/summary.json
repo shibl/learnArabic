@@ -3,124 +3,124 @@
     "years": {
       "2027": {
         "revenue": 1602,
-        "cost": 48329,
-        "profit": -46726,
+        "cost": 22329,
+        "profit": -20726,
         "paying_families_dec": 40,
         "schools_dec": 4,
         "mrr_dec": 487
       },
       "2028": {
         "revenue": 62496,
-        "cost": 203685,
-        "profit": -141187,
+        "cost": 71685,
+        "profit": -9187,
         "paying_families_dec": 1761,
         "schools_dec": 14,
         "mrr_dec": 8511
       },
       "2029": {
         "revenue": 178614,
-        "cost": 343211,
-        "profit": -164596,
+        "cost": 127211,
+        "profit": 51404,
         "paying_families_dec": 4175,
         "schools_dec": 24,
         "mrr_dec": 19440
       }
     },
-    "breakeven_month": null,
-    "max_cash_needed": 352512,
+    "breakeven_month": "2029-02",
+    "max_cash_needed": 36943,
     "arpu_net": 4.2
   },
   "base": {
     "years": {
       "2027": {
         "revenue": 4574,
-        "cost": 48377,
-        "profit": -43803,
+        "cost": 22377,
+        "profit": -17803,
         "paying_families_dec": 159,
         "schools_dec": 8,
         "mrr_dec": 1309
       },
       "2028": {
         "revenue": 87466,
-        "cost": 204120,
-        "profit": -116653,
+        "cost": 72120,
+        "profit": 15347,
         "paying_families_dec": 2369,
         "schools_dec": 28,
         "mrr_dec": 12181
       },
       "2029": {
         "revenue": 247729,
-        "cost": 344321,
-        "profit": -96590,
+        "cost": 128321,
+        "profit": 119410,
         "paying_families_dec": 5675,
         "schools_dec": 48,
         "mrr_dec": 27658
       }
     },
-    "breakeven_month": null,
-    "max_cash_needed": 257048,
+    "breakeven_month": "2028-05",
+    "max_cash_needed": 25736,
     "arpu_net": 4.2
   },
   "high": {
     "years": {
       "2027": {
         "revenue": 11211,
-        "cost": 48476,
-        "profit": -37264,
+        "cost": 22476,
+        "profit": -11264,
         "paying_families_dec": 452,
         "schools_dec": 16,
         "mrr_dec": 3178
       },
       "2028": {
         "revenue": 144170,
-        "cost": 205075,
-        "profit": -60905,
+        "cost": 73075,
+        "profit": 71095,
         "paying_families_dec": 3809,
         "schools_dec": 56,
         "mrr_dec": 20467
       },
       "2029": {
         "revenue": 405466,
-        "cost": 346767,
-        "profit": 58698,
+        "cost": 130767,
+        "profit": 274698,
         "paying_families_dec": 9217,
         "schools_dec": 96,
         "mrr_dec": 46363
       }
     },
-    "breakeven_month": "2029-04",
-    "max_cash_needed": 108940,
+    "breakeven_month": "2028-02",
+    "max_cash_needed": 13075,
     "arpu_net": 4.2
   },
-  "lean": {
+  "base+ads": {
     "years": {
       "2027": {
         "revenue": 4574,
-        "cost": 48377,
-        "profit": -43803,
+        "cost": 22377,
+        "profit": -17803,
         "paying_families_dec": 159,
         "schools_dec": 8,
         "mrr_dec": 1309
       },
       "2028": {
-        "revenue": 124029,
-        "cost": 132556,
-        "profit": -8529,
-        "paying_families_dec": 3594,
+        "revenue": 142306,
+        "cost": 108773,
+        "profit": 33533,
+        "paying_families_dec": 4207,
         "schools_dec": 28,
-        "mrr_dec": 17325
+        "mrr_dec": 19897
       },
       "2029": {
-        "revenue": 329213,
-        "cost": 201291,
-        "profit": 127924,
-        "paying_families_dec": 7563,
+        "revenue": 388237,
+        "cost": 177993,
+        "profit": 210243,
+        "paying_families_dec": 9120,
         "schools_dec": 48,
-        "mrr_dec": 35581
+        "mrr_dec": 42115
       }
     },
-    "breakeven_month": "2028-09",
-    "max_cash_needed": 70341,
+    "breakeven_month": "2028-05",
+    "max_cash_needed": 29847,
     "arpu_net": 4.2
   }
 }

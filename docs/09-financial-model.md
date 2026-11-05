@@ -12,32 +12,35 @@ The model is code, so every number can be traced and changed: [`finance/model.py
 | Paid ads | Only from Jan 2028, once the pilot proves retention; $15 to acquire one paying family |
 
 ## Where money goes
-| Cost | Year 1 → 3 (per month unless noted) |
+**Labour is free in this model:** the owner's existing full-time team (already paid) covers engineering, curriculum, design/illustration and audio. Only cash costs are counted.
+
+| Cash cost | Year 1 → 3 (per month unless noted) |
 |---|---|
-| One-off: native-speaker audio + illustrations, privacy/legal setup | $8,000 + $4,000 in early 2027 |
+| Privacy / legal setup (external lawyer) | $4,000 once, early 2027 |
 | Hosting, tools, legal upkeep | ~$400 → ~$900 |
-| Curriculum / content contractor (part-time) | $2,000 → $4,000 |
-| Community marketing (creators, flyers, events) | $1,500 → $4,000 |
-| Second engineer (contractor) | $0 → $4,000 → $6,000 |
-| Founder salary (owner's decision) | $0 → $4,000 → $8,000 |
+| Community marketing (creators, flyers, events) | $1,500 → $2,500 → $4,000 |
+| Paid ads (from Jan 2028, once retention is proven) | $0 → $3,000 → $6,000 (base) |
+
+To model hiring beyond the current team, set `content_contractor`, `dev_contractor` or `founder_salary` in `finance/model.py`.
 
 ## Results by scenario
-| Scenario | 2029 revenue | Paying families (Dec 2029) | Schools | Break-even month | Max cash needed |
-|---|---|---|---|---|---|
-| Low | $179k | 4,175 | 24 | not within 3 yrs | $353k |
-| Base (team grows) | $248k | 5,675 | 48 | not within 3 yrs | $257k |
-| High | $405k | 9,217 | 96 | Apr 2029 | $109k |
-| **Lean** (base demand, no salaries/2nd engineer, ads scaled up) | **$329k** | **7,563** | 48 | **Sep 2028** | **$70k** |
+| Scenario | 2028 profit | 2029 revenue | 2029 profit | Paying families (Dec 2029) | Schools | Break-even | Max cash needed |
+|---|---|---|---|---|---|---|---|
+| Low | −$9k | $179k | $51k | 4,175 | 24 | Feb 2029 | $37k |
+| **Base** | **$15k** | **$248k** | **$119k** | **5,675** | 48 | **May 2028** | **$26k** |
+| High | $71k | $405k | $275k | 9,217 | 96 | Feb 2028 | $13k |
+| Base + more ads ($6k → $10k/mo) | $34k | $388k | $210k | 9,120 | 48 | May 2028 | $30k |
 
 ## What this tells us
-1. **Unit economics are healthy.** Lifetime value ≈ $4.20 ÷ 5% churn = **$84** per paying family vs. $15 to acquire one → **5.6× LTV/CAC** (3× is the usual bar). If pilot retention confirms the churn assumption, paid ads are worth scaling.
-2. **The business is cost-driven early.** Families alone grow slowly; salaries decide whether we need outside money. Staying lean through 2028 reaches break-even with ~$70k of total funding; hiring early pushes the need to $250k+.
-3. **Schools are a meaningful second engine** (base: ~$3.8k/month by 2029) and lower acquisition cost for families.
-4. **Biggest levers, in order:** free→paid conversion, churn, ads budget once CAC is proven, school count.
+1. **With labour covered, the project is cheap to run:** about **$26k of cash** in the base case gets it to break-even in **May 2028**, about 13 months after paid launch. Even the low case needs under $40k.
+2. **Unit economics are healthy.** Lifetime value ≈ $4.20 ÷ 5% churn = **$84** per paying family vs. $15 to acquire one → **5.6× LTV/CAC** (3× is the usual bar).
+3. **Ads are the main growth lever.** Since there are no salaries to fund, spare cash is best spent on acquisition once the pilot confirms churn: the "more ads" case adds ~$90k profit in 2029 for ~$4k more peak cash.
+4. **Schools are a second engine** (base: ~$3.8k/month by 2029) and lower the cost of reaching families.
+5. **Biggest risks to the numbers:** free→paid conversion and churn. The pilot exists to measure both.
 
 ## Funding options (for discussion)
-- Bootstrap the lean path (~$70k over 18 months) — owner-funded or friends & family.
-- Grants: cultural/heritage-language and edtech grants (Canada and EU have programs) to fund audio and content.
+- Self-fund: ~$26k of cash over ~16 months in the base case (no outside money needed).
+- Grants: cultural/heritage-language and edtech grants (Canada and EU have programs) to fund marketing or free access for low-income families.
 - Small pre-seed round once pilot retention is proven (week-4 ≥ 40%).
 
 *These are planning assumptions, not forecasts. They get replaced with real numbers from the pilot.*
