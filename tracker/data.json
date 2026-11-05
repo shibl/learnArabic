@@ -4,14 +4,14 @@
     "nameAr": "حروف",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T17:51:51-05:00",
+    "updated": "2026-11-05T17:55:16-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
-    "domain": "design",
-    "title": "Brand basics for the app",
-    "detail": "Palette, type and a friendly mascot direction, then straight into building the app.",
-    "since": "2026-11-05T17:51:51-05:00"
+    "domain": "marketing",
+    "title": "Landing page with waitlist",
+    "detail": "A page parents land on from WhatsApp groups and weekend schools, explaining Huroof and collecting pilot sign-ups.",
+    "since": "2026-11-05T17:55:16-05:00"
   },
   "links": [
     {
@@ -23,6 +23,11 @@
       "label": "Tracker (mirror)",
       "url": "https://raw.githack.com/shibl/learnArabic/main/tracker/index.html",
       "icon": "◉"
+    },
+    {
+      "label": "Play the app",
+      "url": "https://raw.githack.com/shibl/learnArabic/main/app/index.html",
+      "icon": "▶"
     }
   ],
   "domains": [
@@ -77,12 +82,12 @@
     },
     {
       "label": "Mini-games",
-      "value": "0",
+      "value": "4",
       "target": "4"
     },
     {
       "label": "Strategy docs",
-      "value": "6",
+      "value": "7",
       "target": "5"
     },
     {
@@ -210,33 +215,50 @@
     {
       "id": "t-brand",
       "domain": "design",
-      "status": "doing",
+      "status": "done",
       "title": "Brand: name, palette, type, mascot",
-      "started": "2026-11-05T17:51:51-05:00"
+      "started": "2026-11-05T17:51:51-05:00",
+      "done": "2026-11-05T17:55:16-05:00",
+      "links": [
+        {
+          "label": "Doc",
+          "url": "https://github.com/shibl/learnArabic/blob/main/docs/07-brand.md"
+        }
+      ]
     },
     {
       "id": "t-app",
       "domain": "eng",
-      "status": "todo",
-      "title": "App MVP: letter lessons + audio"
+      "status": "done",
+      "title": "App MVP: letter lessons + audio",
+      "done": "2026-11-05T17:55:16-05:00",
+      "links": [
+        {
+          "label": "Play it",
+          "url": "https://raw.githack.com/shibl/learnArabic/main/app/index.html"
+        }
+      ]
     },
     {
       "id": "t-games",
       "domain": "eng",
-      "status": "todo",
-      "title": "Mini-games: listen & pick, match forms, trace"
+      "status": "done",
+      "title": "Mini-games: listen & pick, match forms, trace",
+      "done": "2026-11-05T17:55:16-05:00"
     },
     {
       "id": "t-progress",
       "domain": "eng",
-      "status": "todo",
-      "title": "Progress, stars & parent view"
+      "status": "done",
+      "title": "Progress, stars & parent view",
+      "done": "2026-11-05T17:55:16-05:00"
     },
     {
       "id": "t-landing",
       "domain": "marketing",
-      "status": "todo",
-      "title": "Landing page with waitlist"
+      "status": "doing",
+      "title": "Landing page with waitlist",
+      "started": "2026-11-05T17:55:16-05:00"
     },
     {
       "id": "t-gtm",
@@ -262,6 +284,12 @@
       "domain": "curriculum",
       "status": "todo",
       "title": "Dialect reviewers for home words"
+    },
+    {
+      "id": "t-audio-rec",
+      "domain": "eng",
+      "status": "todo",
+      "title": "Recording page for native-speaker audio"
     }
   ],
   "milestones": [
@@ -280,7 +308,7 @@
     {
       "date": "Nov 2026",
       "title": "Playable alphabet MVP",
-      "status": "todo",
+      "status": "doing",
       "desc": "28 letters, audio, 3 games, progress."
     },
     {
@@ -343,6 +371,23 @@
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T17:55:16-05:00",
+      "domain": "eng",
+      "text": "Tested end-to-end in a headless browser: full lesson for ب completes with 3 stars, no errors. Tightened tracing check so scribbles don't pass."
+    },
+    {
+      "ts": "2026-11-05T17:55:16-05:00",
+      "domain": "eng",
+      "text": "App MVP playable: profiles, 7 letter islands, letter lessons with forms & picture words, 4 games (listen, first sound, shape match, finger tracing), stars, streaks, parent corner, EN/FR, offline.",
+      "link": "https://raw.githack.com/shibl/learnArabic/main/app/index.html"
+    },
+    {
+      "ts": "2026-11-05T17:55:16-05:00",
+      "domain": "design",
+      "text": "Brand v0: warm sand/teal/coral palette, Baloo Bhaijaan 2 (Arabic + Latin), guide character Hudhud the hoopoe.",
+      "link": "https://github.com/shibl/learnArabic/blob/main/docs/07-brand.md"
+    },
     {
       "ts": "2026-11-05T17:51:51-05:00",
       "domain": "curriculum",
