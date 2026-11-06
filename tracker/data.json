@@ -4,14 +4,14 @@
     "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T20:46:13-05:00",
+    "updated": "2026-11-05T21:43:25-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
     "domain": "eng",
     "title": "Paused — next up: share loop (island certificate + child's voice)",
-    "detail": "Work happens in sessions with the owner. Between sessions nothing is being built; this line says so honestly.",
-    "since": "2026-11-05T20:46:13-05:00"
+    "detail": "Press ▶ Next task above to continue (after the one-time GitHub setup in Needs you).",
+    "since": "2026-11-05T21:43:25-05:00"
   },
   "links": [
     {
@@ -467,6 +467,24 @@
       "status": "todo",
       "title": "$1–2k ad test: measure cost per sign-up and conversion",
       "notes": "Turn ads up only if loop metrics hold"
+    },
+    {
+      "id": "t-nextbtn",
+      "domain": "eng",
+      "status": "done",
+      "title": "▶ Next task button on the tracker (GitHub Action runs Claude)",
+      "notes": "Button opens a 'Next task' issue; the workflow runs one task, updates the tracker, closes the issue",
+      "done": "2026-11-05T21:43:25-05:00",
+      "links": [
+        {
+          "label": "Workflow",
+          "url": "https://github.com/shibl/learnArabic/blob/main/.github/workflows/next-task.yml"
+        },
+        {
+          "label": "Instructions",
+          "url": "https://github.com/shibl/learnArabic/blob/main/.github/next-task.md"
+        }
+      ]
     }
   ],
   "milestones": [
@@ -580,9 +598,18 @@
     {
       "title": "Send the audio zip",
       "detail": "When recording is done, attach the zip in chat. Guide: docs/10-audio-recording-guide.md"
+    },
+    {
+      "title": "Connect Claude to GitHub (one-time, ~5 min)",
+      "detail": "1) Install the Claude GitHub App on shibl/learnArabic: github.com/apps/claude. 2) On your computer run 'claude setup-token' and copy the token. 3) Repo Settings → Secrets and variables → Actions → New secret named CLAUDE_CODE_OAUTH_TOKEN, paste the token. Then ▶ Next task works."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-05T21:43:25-05:00",
+      "domain": "eng",
+      "text": "Added a ▶ Next task button to the tracker: it opens a 'Next task' issue on GitHub, which starts a GitHub Action that runs Claude on the top task, updates this tracker live and closes the issue. Shows whether a run is in progress."
+    },
     {
       "ts": "2026-11-05T20:46:13-05:00",
       "domain": "eng",

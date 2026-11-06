@@ -109,6 +109,12 @@ h2 small{font:400 13px "IBM Plex Sans";color:var(--muted)}
 .dp-cols li a{font-size:12px;margin-right:6px}
 .dp-empty{color:var(--muted);font-size:13px}
 .dom-card .go{font:500 11px "IBM Plex Mono",monospace;color:var(--accent);margin-top:4px}
+.go-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:-6px 0 4px}
+.go-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:10px 18px;border-radius:12px}
+.go-btn:hover{filter:brightness(1.08)}
+.go-btn.busy{background:var(--muted);pointer-events:none}
+.go-st{font:500 12.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.go-st b{color:var(--ink)}
 footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
 .err{color:var(--bad)}
 </style>
@@ -130,6 +136,10 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 
   <section class="now" id="now"><div class="lbl">Working on right now</div><span class="dom">…</span><span class="t">Loading tracker…</span></section>
 
+  <div class="go-bar">
+    <a class="go-btn" id="gobtn" target="_blank" rel="noopener">▶ Next task</a>
+    <span class="go-st" id="gost">Checking run status…</span>
+  </div>
   <div class="links" id="links"></div>
 
   <h2>Domains <small>click a domain to filter the board</small></h2>
@@ -235,6 +245,17 @@ function renderPanel(){
     </div></div>`;
   $('dpx').onclick=()=>openDomain(null);
 }
+const NEW_RUN=`https://github.com/${REPO}/issues/new?title=${encodeURIComponent('Next task')}&body=${encodeURIComponent('Optional: replace this line with a note for this run (e.g. "do the short-vowel lessons next", or a decision from Needs you). Leave it as is to let Claude pick the top task on the board.')}`;
+async function runs(){
+  const b=$('gobtn'),st=$('gost');b.href=NEW_RUN;
+  try{const r=await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/next-task.yml/runs?per_page=1`);if(!r.ok)throw 0;
+    const x=(await r.json()).workflow_runs?.[0];
+    if(!x){st.innerHTML='No runs yet — press to start the first one (opens GitHub; press <b>Submit</b>).';b.classList.remove('busy');return}
+    const live=x.status!=='completed';b.classList.toggle('busy',live);b.textContent=live?'⏳ Working…':'▶ Next task';
+    const res=live?`<b>running</b> since ${esc(ago(x.run_started_at||x.created_at))}`:`last run <b>${esc(x.conclusion||'done')}</b> ${esc(ago(x.updated_at))}`;
+    st.innerHTML=`${res} · <a href="${esc(x.html_url)}" target="_blank" rel="noopener">log</a>${live?'':' · opens GitHub, then press <b>Submit</b>'}`;
+  }catch(e){st.innerHTML='Opens GitHub — press <b>Submit</b> to start a run.';b.classList.remove('busy')}
+}
 async function commits(){
   try{const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=12`);if(!r.ok)throw 0;const c=await r.json();
     $('commits').innerHTML=c.map(x=>`<li><time style="white-space:pre">${esc(hm(x.commit.author.date))}</time><div><a href="${esc(x.html_url)}" target="_blank" rel="noopener"><code>${x.sha.slice(0,7)}</code></a> ${esc(x.commit.message.split('\n')[0])}</div></li>`).join('');
@@ -250,7 +271,7 @@ async function fin(){
 }
 if(location.hash.length>1)FILTER=decodeURIComponent(location.hash.slice(1));
 window.addEventListener('hashchange',()=>openDomain(location.hash.slice(1)||null));
-load().then(()=>{if(FILTER){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({block:'start'})}});commits();fin();setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
+load().then(()=>{if(FILTER){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({block:'start'})}});commits();fin();runs();setInterval(runs,120000);setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
 </script>
 </body>
 </html>
