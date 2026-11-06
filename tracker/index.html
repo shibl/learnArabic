@@ -96,6 +96,19 @@ h2 small{font:400 13px "IBM Plex Sans";color:var(--muted)}
 .fin th:first-child,.fin td:first-child{text-align:left}
 .fin th{font:500 11px "IBM Plex Mono",monospace;text-transform:uppercase;color:var(--muted)}
 .fin .neg{color:var(--bad)}.fin .pos{color:var(--ok)}
+#dpanel .card{margin-top:16px;border:2px solid var(--dc);scroll-margin-top:12px}
+.dp-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.dp-h h3{margin:0;font:700 24px Fraunces,serif}
+.dp-h p{margin:4px 0 0;color:var(--muted)}
+.dp-x{font:inherit;background:none;border:1px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--ink);cursor:pointer;white-space:nowrap}
+.dp-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:14px}
+.dp-cols h4{margin:0 0 8px;font:600 12px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.dp-cols ul{list-style:none;margin:0;padding:0}
+.dp-cols li{padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.dp-cols li .nt{color:var(--muted);font-size:12.5px}
+.dp-cols li a{font-size:12px;margin-right:6px}
+.dp-empty{color:var(--muted);font-size:13px}
+.dom-card .go{font:500 11px "IBM Plex Mono",monospace;color:var(--accent);margin-top:4px}
 footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
 .err{color:var(--bad)}
 </style>
@@ -121,6 +134,7 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 
   <h2>Domains <small>click a domain to filter the board</small></h2>
   <div class="grid domains" id="domains"></div>
+  <div id="dpanel"></div>
 
   <h2>Key numbers</h2>
   <div class="kpis" id="kpis"></div>
@@ -181,11 +195,12 @@ function render(){
   $('links').innerHTML=(D.links||[]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.icon||'↗')} ${esc(l.label)}</a>`).join('');
   const tasks=D.tasks||[];
   $('domains').innerHTML=D.domains.map(d=>{const t=tasks.filter(x=>x.domain===d.id),done=t.filter(x=>x.status==='done').length,pct=t.length?Math.round(done/t.length*100):0,doing=t.filter(x=>x.status==='doing').length;
-    return `<div class="card dom-card ${FILTER===d.id?'sel':''}" data-id="${d.id}" style="--accent:${d.color}"><div class="h"><span>${esc(d.name)}</span><span class="ico">${esc(d.icon)}</span></div><div class="s">${esc(d.summary)}</div><div class="bar"><i style="width:${pct}%"></i></div><div class="n"><span>${done}/${t.length} done</span><span>${doing?doing+' active':''}</span></div></div>`}).join('');
-  document.querySelectorAll('.dom-card').forEach(e=>e.onclick=()=>{FILTER=FILTER===e.dataset.id?null:e.dataset.id;render()});
+    return `<div class="card dom-card ${FILTER===d.id?'sel':''}" data-id="${d.id}" style="--accent:${d.color}"><div class="h"><span>${esc(d.name)}</span><span class="ico">${esc(d.icon)}</span></div><div class="s">${esc(d.summary)}</div><div class="bar"><i style="width:${pct}%"></i></div><div class="n"><span>${done}/${t.length} done</span><span>${doing?doing+' active':''}</span></div><div class="go">${FILTER===d.id?'▲ hide details':'▼ view details'}</div></div>`}).join('');
+  document.querySelectorAll('.dom-card').forEach(e=>e.onclick=()=>openDomain(FILTER===e.dataset.id?null:e.dataset.id));
+  renderPanel();
   $('kpis').innerHTML=(D.metrics||[]).map(m=>`<div class="card kpi"><div class="v">${esc(m.value)}</div><div class="l">${esc(m.label)}${m.target?' · target '+esc(m.target):''}</div></div>`).join('');
   $('filter').innerHTML=FILTER?`showing ${esc(dom(FILTER).name)}<button id="clr">show all</button>`:'';
-  if(FILTER)$('clr').onclick=()=>{FILTER=null;render()};
+  if(FILTER)$('clr').onclick=()=>openDomain(null);
   const lanes=[['doing','In progress'],['todo','Up next'],['blocked','Blocked / waiting'],['done','Done']];
   const vis=tasks.filter(t=>!FILTER||t.domain===FILTER);
   $('board').innerHTML=lanes.map(([k,l])=>{let ts=vis.filter(t=>t.status===k);if(k==='done')ts=ts.sort((a,b)=>(b.done||'').localeCompare(a.done||''));
@@ -194,6 +209,31 @@ function render(){
   $('needs').innerHTML=(D.needsYou||[]).length?(D.needsYou).map(n=>`<div class="card"><b>${esc(n.title)}</b><div style="font-size:13.5px;margin-top:4px">${esc(n.detail)}</div></div>`).join(''):'<div class="card">Nothing needs you right now.</div>';
   $('milestones').innerHTML=(D.milestones||[]).map(m=>`<div class="card"><span class="st ${esc(m.status)}">${esc(m.status)}</span><div class="dte">${esc(m.date)}</div><div class="ttl">${esc(m.title)}</div><div class="ds">${esc(m.desc||'')}</div></div>`).join('');
   $('decisions').innerHTML=(D.decisions||[]).slice().reverse().map(d=>`<li><b>${esc(d.title)}</b> <span class="filter">${esc(d.date)}</span><div class="why">${esc(d.why)}</div></li>`).join('');
+}
+function openDomain(id){
+  FILTER=id; try{history.replaceState(null,'',id?'#'+id:location.pathname+location.search)}catch(e){}
+  render();
+  if(id){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({behavior:'smooth',block:'start'})}
+}
+function renderPanel(){
+  const P=$('dpanel');if(!FILTER||!DATA){P.innerHTML='';return}
+  const d=dom(FILTER),T=(DATA.tasks||[]).filter(t=>t.domain===FILTER);
+  const item=t=>`<li>${esc(t.title)}${t.notes?`<div class="nt">${esc(t.notes)}</div>`:''}${t.done?`<div class="nt">✓ ${esc(ago(t.done))}</div>`:''}<div>${(t.links||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ↗</a>`).join('')}</div></li>`;
+  const list=(arr,empty)=>arr.length?`<ul>${arr.map(item).join('')}</ul>`:`<div class="dp-empty">${empty}</div>`;
+  const doing=T.filter(t=>t.status==='doing'),next=T.filter(t=>t.status==='todo'||t.status==='blocked'),done=T.filter(t=>t.status==='done').sort((a,b)=>(b.done||'').localeCompare(a.done||''));
+  const logs=(DATA.log||[]).filter(l=>l.domain===FILTER).slice(0,6);
+  const seen=new Set(),docs=T.flatMap(t=>(t.links||[]).map(x=>({...x,t:t.title}))).filter(x=>!seen.has(x.url)&&seen.add(x.url));
+  const now=DATA.now&&DATA.now.domain===FILTER?`<p><b>Working on now:</b> ${esc(DATA.now.title)}</p>`:'';
+  P.innerHTML=`<div class="card" style="--dc:${d.color}">
+    <div class="dp-h"><div><h3>${esc(d.icon)} ${esc(d.name)}</h3><p>${esc(d.summary)} · ${done.length}/${T.length} tasks done</p>${now}</div><button class="dp-x" id="dpx">✕ close</button></div>
+    <div class="dp-cols">
+      <div><h4>In progress (${doing.length})</h4>${list(doing,'Nothing in progress right now.')}
+           <h4 style="margin-top:14px">Up next (${next.length})</h4>${list(next,'Nothing queued.')}</div>
+      <div><h4>Done (${done.length})</h4>${list(done,'Nothing finished yet.')}</div>
+      <div><h4>Recent activity</h4>${logs.length?`<ul>${logs.map(l=>`<li><div class="nt">${esc(ago(l.ts))}</div>${esc(l.text)}${l.link?` <a href="${esc(l.link)}" target="_blank" rel="noopener">↗</a>`:''}</li>`).join('')}</ul>`:'<div class="dp-empty">No activity yet.</div>'}
+           <h4 style="margin-top:14px">Documents & links (${docs.length})</h4>${docs.length?`<ul>${docs.map(x=>`<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ↗</a> ${esc(x.t)}</li>`).join('')}</ul>`:'<div class="dp-empty">None yet.</div>'}</div>
+    </div></div>`;
+  $('dpx').onclick=()=>openDomain(null);
 }
 async function commits(){
   try{const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=12`);if(!r.ok)throw 0;const c=await r.json();
@@ -208,7 +248,9 @@ async function fin(){
       Object.entries(F).map(([k,v])=>`<tr><td><b>${esc(k)}</b></td>${yrs.map(y=>`<td>${m(v.years[y].revenue)}</td><td class="${v.years[y].profit<0?'neg':'pos'}">${m(v.years[y].profit)}</td>`).join('')}<td>${v.years[yrs.at(-1)].paying_families_dec.toLocaleString()}</td><td>${esc(v.breakeven_month||'> 3 yrs')}</td><td>${m(v.max_cash_needed)}</td></tr>`).join('');
   }catch(e){$('fin').innerHTML='<tr><td>See <a href="https://github.com/shibl/learnArabic/blob/main/docs/09-financial-model.md">financial model</a></td></tr>'}
 }
-load();commits();fin();setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
+if(location.hash.length>1)FILTER=decodeURIComponent(location.hash.slice(1));
+window.addEventListener('hashchange',()=>openDomain(location.hash.slice(1)||null));
+load().then(()=>{if(FILTER){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({block:'start'})}});commits();fin();setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
 </script>
 </body>
 </html>
