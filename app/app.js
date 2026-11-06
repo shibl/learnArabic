@@ -14,7 +14,16 @@ const T = {
     noVoice: 'No Arabic voice on this device yet. Install one in your system settings (Text-to-speech → Arabic) to hear the letters.',
     homeWord: 'At home:', locked: 'Finish the island before to open this one', clear: 'Clear', check: 'Done!', tip: 'Tip for parents',
     tipText: 'Short and daily beats long and weekly. 5–10 minutes a day is perfect. Ask your child to teach you a letter tonight!',
-    switchKid: 'Switch child', lang: 'Français', hello: n => `Salaam ${n}! Ready to fly?`, privacy: 'All progress stays on this device. No account, no ads.'
+    switchKid: 'Switch child', lang: 'Français', hello: n => `Salaam ${n}! Ready to fly?`, privacy: 'All progress stays on this device. No account, no ads.',
+    cert: 'Certificate', getCert: 'Get your certificate!', certOf: 'learned the letters of', certLine: 'Sindibad certificate',
+    record: 'Record your voice', recHint: 'Read the 4 letters out loud, one by one!', recording: 'Recording… read the letters!', stop: 'Stop',
+    listenMine: 'Listen to me', redo: 'Record again', shareFam: 'Share with family', voiceStays: 'Your voice stays on this device unless a grown-up shares it.',
+    noMic: 'No microphone here, or it is not allowed. You can still share the certificate.',
+    shareTitle: 'Share with family', shareIntro: 'Send this certificate to grandparents, aunts and uncles. Nothing is uploaded to us: the picture and the voice clip go straight from this phone to the app you pick.',
+    withVoice: 'Include the voice clip', shareBtn: 'Share (WhatsApp, Messages…)', waText: 'WhatsApp message only', savePic: 'Save the picture', saveVoice: 'Save the voice clip',
+    waNote: 'WhatsApp links can only carry text: save the picture first, then attach it in the chat.', sharedOk: 'Shared! Thank you 💛', voiceOnlyImg: 'This phone can only share the picture here. Use “Save the voice clip” to send it too.',
+    shareMsg: (n, isl) => `🌟 ${n} just finished ${isl} in Sindibad Letters and can read 4 new Arabic letters! Listen to the voice clip 💛\nTeach your kids Arabic too →`,
+    certs: 'certificates', shares: 'shares'
   },
   fr: {
     who: "Qui apprend aujourd'hui ?", add: 'Ajouter', newKid: 'Nouvel explorateur', name: 'Prénom', pick: 'Choisis un animal', start: "C'est parti !",
@@ -27,7 +36,16 @@ const T = {
     noVoice: "Pas de voix arabe sur cet appareil. Installez-en une dans les réglages (Synthèse vocale → Arabe) pour entendre les lettres.",
     homeWord: 'À la maison :', locked: "Termine l'île précédente pour ouvrir celle-ci", clear: 'Effacer', check: 'Fini !', tip: 'Conseil aux parents',
     tipText: "Court et quotidien vaut mieux que long et hebdomadaire. 5 à 10 minutes par jour, c'est parfait. Ce soir, demandez à votre enfant de vous apprendre une lettre !",
-    switchKid: "Changer d'enfant", lang: 'English', hello: n => `Salam ${n} ! Prêt à t'envoler ?`, privacy: "Toute la progression reste sur cet appareil. Pas de compte, pas de pub."
+    switchKid: "Changer d'enfant", lang: 'English', hello: n => `Salam ${n} ! Prêt à t'envoler ?`, privacy: "Toute la progression reste sur cet appareil. Pas de compte, pas de pub.",
+    cert: 'Certificat', getCert: 'Reçois ton certificat !', certOf: 'a appris les lettres de', certLine: 'Certificat Sindibad',
+    record: 'Enregistre ta voix', recHint: 'Lis les 4 lettres à voix haute, une par une !', recording: 'Enregistrement… lis les lettres !', stop: 'Stop',
+    listenMine: "M'écouter", redo: 'Recommencer', shareFam: 'Partager en famille', voiceStays: "Ta voix reste sur cet appareil, sauf si un adulte la partage.",
+    noMic: "Pas de micro, ou il n'est pas autorisé. Tu peux quand même partager le certificat.",
+    shareTitle: 'Partager en famille', shareIntro: "Envoyez ce certificat aux grands-parents, oncles et tantes. Rien n'est envoyé chez nous : l'image et la voix partent directement de ce téléphone vers l'application choisie.",
+    withVoice: "Inclure l'enregistrement de la voix", shareBtn: 'Partager (WhatsApp, Messages…)', waText: 'Message WhatsApp seul', savePic: "Enregistrer l'image", saveVoice: "Enregistrer la voix",
+    waNote: "Les liens WhatsApp ne transportent que du texte : enregistrez d'abord l'image, puis joignez-la dans la discussion.", sharedOk: 'Partagé ! Merci 💛', voiceOnlyImg: "Ce téléphone ne peut partager que l'image ici. Utilisez « Enregistrer la voix » pour l'envoyer aussi.",
+    shareMsg: (n, isl) => `🌟 ${n} vient de terminer « ${isl} » dans Sindibad Letters et sait lire 4 nouvelles lettres arabes ! Écoutez sa voix 💛\nApprenez l'arabe à vos enfants aussi →`,
+    certs: 'certificats', shares: 'partages'
   }
 };
 
@@ -94,7 +112,7 @@ const hud = msg => `<div class="hud">${HUD}<div class="bubble">${msg}</div></div
 
 /* ---------- screens ---------- */
 let screen = 'profiles', ctx = {};
-function go(s, c = {}) { screen = s; ctx = c; window.speechSynthesis && speechSynthesis.cancel(); render(); window.scrollTo(0, 0); }
+function go(s, c = {}) { if (typeof stopRec === 'function') stopRec(); screen = s; ctx = c; window.speechSynthesis && speechSynthesis.cancel(); render(); window.scrollTo(0, 0); }
 function render() { (VIEWS[screen] || VIEWS.profiles)(); }
 const topbar = (back, extra = '') => `<div class="bar">${back ? `<button class="ib" data-go="${back}" aria-label="back">⬅️</button>` : ''}<span class="sp"></span>${extra}</div>`;
 function wire() {
@@ -143,7 +161,7 @@ const VIEWS = {
       <h1>${t('islands')}</h1>
       <div class="map">${D.islands.map((is, i) => {
         const open = islandUnlocked(k, i), st = is.letters.reduce((a, id) => a + (k.stars[id] || 0), 0);
-        return `<button class="island ${open ? '' : 'locked'}" data-i="${i}"><span class="e">${is.emoji}</span><span><div class="t">${is.name[S.lang]}</div><div class="ls ar">${is.letters.map(id => L[id].char).join(' ')}</div></span>${st ? `<span class="st">⭐ ${st}/12</span>` : ''}</button>`;
+        return `<button class="island ${open ? '' : 'locked'}" data-i="${i}"><span class="e">${is.emoji}</span><span><div class="t">${is.name[S.lang]}</div><div class="ls ar">${is.letters.map(id => L[id].char).join(' ')}</div></span>${st ? `<span class="st">${(k.certs || {})[is.id] ? '🏅 ' : ''}⭐ ${st}/12</span>` : ''}</button>`;
       }).join('')}</div>`;
     wire();
     app.querySelectorAll('.island').forEach(b => b.onclick = () => {
@@ -157,7 +175,8 @@ const VIEWS = {
     const allDone = is.letters.every(id => k.stars[id]);
     app.innerHTML = `${topbar('map')}<div class="center"><h2>${is.emoji} ${is.name[S.lang]}</h2>
       <div class="grid letters" style="width:100%;max-width:440px">${is.letters.map(id => `<button class="lt" data-id="${id}"><div class="c ar">${L[id].char}</div><div class="s">${'⭐'.repeat(k.stars[id] || 0) || '·'}</div></button>`).join('')}</div>
-      ${allDone ? `<button class="btn sun" id="rev">🏆 ${t('review')}</button>` : ''}</div>`;
+      ${allDone ? `<button class="btn sun" id="rev">🏆 ${t('review')}</button>` : ''}
+      ${(k.certs || {})[is.id] ? `<button class="btn alt" data-go="cert" data-arg='${JSON.stringify({ i: ctx.i })}'>🏅 ${t('cert')}</button>` : ''}</div>`;
     wire();
     app.querySelectorAll('.lt').forEach(b => b.onclick = () => go('meet', { id: b.dataset.id, i: ctx.i }));
     const r = app.querySelector('#rev'); if (r) r.onclick = () => go('play', { i: ctx.i, review: true });
@@ -189,23 +208,25 @@ const VIEWS = {
       <div class="stars">${[1, 2, 3].map(x => `<span class="${x <= s ? '' : 'off'}">⭐</span>`).join('')}</div>
       ${hud(t('done'))}
       <div class="family"><b>👪 ${t('family')}</b>${esc(is.family[S.lang])}</div>
-      <button class="btn" data-go="island" data-arg='${JSON.stringify({ i: ctx.i })}'>${t('next')} ▶</button>
+      ${ctx.cert ? `<button class="btn sun" data-go="cert" data-arg='${JSON.stringify({ i: ctx.i })}'>🏅 ${t('getCert')}</button>` : ''}
+      <button class="btn${ctx.cert ? ' alt' : ''}" data-go="island" data-arg='${JSON.stringify({ i: ctx.i })}'>${t('next')} ▶</button>
       <button class="btn alt" data-go="map">🗺️ ${t('home')}</button></div>`;
     wire(); confetti(); beep(true); setTimeout(() => sayUI(t('done')), 400);
   },
   gate() {
     const a = 2 + (Math.random() * 6 | 0), b = 2 + (Math.random() * 6 | 0), opts = shuffle([a + b, a + b + 1, a + b - 1, a + b + 2]);
-    app.innerHTML = `${topbar('profiles')}<div class="center"><h2>${t('gate')} ${a} + ${b} ?</h2>
+    const back = ctx.back || 'profiles', to = ctx.to || 'parent', arg = ctx.arg || {}, bk = ctx.backArg || {};
+    app.innerHTML = `${topbar(back + '" data-arg=\'' + JSON.stringify(bk) + '\'')}<div class="center"><h2>${t('gate')} ${a} + ${b} ?</h2>
       <div class="grid opts">${opts.map(o => `<button class="opt" style="font-size:44px" data-v="${o}">${o}</button>`).join('')}</div></div>`;
     wire();
-    app.querySelectorAll('.opt').forEach(x => x.onclick = () => +x.dataset.v === a + b ? go('parent') : (toast(t('gateWrong')), go('profiles')));
+    app.querySelectorAll('.opt').forEach(x => x.onclick = () => +x.dataset.v === a + b ? go(to, arg) : (toast(t('gateWrong')), go(back, bk)));
   },
   parent() {
     app.innerHTML = `${topbar('profiles')}<h1>👪 ${t('parent')}</h1>
       <div class="grid">${S.kids.map(k => {
         const learned = D.letters.filter(l => k.stars[l.id]).length, st = Object.values(k.stars).reduce((a, b) => a + b, 0);
         return `<div class="pcard"><h2>${k.av} ${esc(k.name)}</h2>
-          <div class="kv"><div><b>${learned}/28</b>${t('letters')}</div><div><b>${st}</b>${t('starsL')}</div><div><b>${k.streak || 0}</b>${t('streak')}</div><div><b>${Math.round(k.minutes || 0)}</b>${t('minutes')}</div></div>
+          <div class="kv"><div><b>${learned}/28</b>${t('letters')}</div><div><b>${st}</b>${t('starsL')}</div><div><b>${k.streak || 0}</b>${t('streak')}</div><div><b>${Math.round(k.minutes || 0)}</b>${t('minutes')}</div><div><b>${Object.keys(k.certs || {}).length}</b>${t('certs')}</div><div><b>${k.shares || 0}</b>${t('shares')}</div></div>
           <p class="small">${t('progress')}</p>
           <div class="pgrid">${D.islands.flatMap(is => is.letters).map(id => `<div class="ar ${k.stars[id] ? 'done' : ''}" title="${'⭐'.repeat(k.stars[id] || 0)}">${L[id].char}</div>`).join('')}</div>
           <p><button class="btn alt" style="font-size:15px;min-height:0;padding:8px 14px" data-del="${k.id}">🗑️ ${t('reset')}</button></p></div>`;
@@ -214,10 +235,156 @@ const VIEWS = {
     wire();
     app.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
       if (!confirm(t('resetQ'))) return;
+      D.islands.forEach(is => clipDel(b.dataset.del, is.id));
       S.kids = S.kids.filter(k => k.id !== b.dataset.del); if (S.cur === b.dataset.del) S.cur = null; save(); render();
     });
   }
 };
+
+/* ---------- certificate, voice clip, share (all on device) ---------- */
+const SITE = 'https://shibl.github.io/learnArabic/site/';
+const IDB = () => new Promise((res, rej) => {
+  if (!window.indexedDB) return rej(new Error('no idb'));
+  const r = indexedDB.open('huroof-voice', 1);
+  r.onupgradeneeded = () => r.result.createObjectStore('clips');
+  r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+});
+const clipKey = (kidId, islandId) => kidId + ':' + islandId;
+async function clipOp(mode, key, val) {
+  try {
+    const db = await IDB();
+    return await new Promise((res, rej) => {
+      const tx = db.transaction('clips', mode === 'get' ? 'readonly' : 'readwrite'), st = tx.objectStore('clips');
+      const r = mode === 'get' ? st.get(key) : mode === 'put' ? st.put(val, key) : st.delete(key);
+      r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+    });
+  } catch (e) { return null; }
+}
+const clipGet = (k, i) => clipOp('get', clipKey(k, i));
+const clipPut = (k, i, b) => clipOp('put', clipKey(k, i), b);
+const clipDel = (k, i) => clipOp('del', clipKey(k, i));
+const audioExt = type => /mp4|aac|m4a/.test(type) ? 'm4a' : /ogg/.test(type) ? 'ogg' : 'webm';
+
+function drawCert(k, is) {
+  const W = 1080, c = document.createElement('canvas'); c.width = c.height = W;
+  const g = c.getContext('2d'), F = (w, px) => `${w} ${px}px "Baloo Bhaijaan 2", system-ui, sans-serif`;
+  const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+  g.fillStyle = '#0f8b8d'; g.fillRect(0, 0, W, W);
+  g.fillStyle = '#fbf3e4'; rr(40, 40, W - 80, W - 80, 56); g.fill();
+  g.setLineDash([18, 14]); g.lineWidth = 6; g.strokeStyle = '#f6b93b'; rr(70, 70, W - 140, W - 140, 40); g.stroke(); g.setLineDash([]);
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillStyle = '#8a7a66'; g.font = F(700, 34); g.fillText(t('certLine').toUpperCase(), W / 2, 140);
+  g.font = F(400, 120); g.fillText(is.emoji, W / 2, 250);
+  g.direction = 'rtl'; g.fillStyle = '#ef6f5c'; g.font = F(800, 96); g.fillText('مَبْرُوكٌ!', W / 2, 380); g.direction = 'ltr';
+  g.fillStyle = '#2b2118'; let nf = 84; g.font = F(800, nf);
+  const name = `${k.av} ${k.name}`; while (g.measureText(name).width > W - 220 && nf > 40) g.font = F(800, nf -= 4);
+  g.fillText(name, W / 2, 490);
+  g.fillStyle = '#5c4d3d'; g.font = F(600, 40); g.fillText(`${t('certOf')} ${is.name[S.lang]}`, W / 2, 570);
+  const ls = is.letters.map(id => L[id].char), bw = 190, gap = 28, x0 = (W - (bw * 4 + gap * 3)) / 2;
+  ls.forEach((ch, j) => {
+    const x = x0 + (3 - j) * (bw + gap); // right-to-left order
+    g.fillStyle = '#fff'; rr(x, 630, bw, 200, 36); g.fill();
+    g.fillStyle = '#0f8b8d'; g.font = F(700, 140); g.direction = 'rtl'; g.fillText(ch, x + bw / 2, 740); g.direction = 'ltr';
+  });
+  g.fillStyle = '#8a7a66'; g.font = F(600, 30);
+  const d = (k.certs || {})[is.id] || today();
+  g.fillText(new Date(d + 'T12:00:00').toLocaleDateString(S.lang === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }), W / 2, 880);
+  g.fillStyle = '#0b6e70'; g.font = F(800, 40);
+  const en = 'Sindibad Letters  ·  ', arT = 'حُرُوفُ سِنْدِبَاد', we = g.measureText(en).width, wa = g.measureText(arT).width, fx = (W - we - wa) / 2;
+  g.textAlign = 'left'; g.fillText(en, fx, 960); g.direction = 'rtl'; g.textAlign = 'right'; g.fillText(arT, fx + we + wa, 960);
+  g.direction = 'ltr'; g.textAlign = 'center';
+  return c;
+}
+const canvasBlob = c => new Promise(r => c.toBlob(r, 'image/png'));
+function download(blob, name) {
+  const u = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
+}
+let rec = null;
+function stopRec() { if (rec && rec.state === 'recording') rec.stop(); }
+
+Object.assign(VIEWS, {
+  async cert() {
+    const k = kid(), is = D.islands[ctx.i]; if (!k || !(k.certs || {})[is.id]) return go('map');
+    const img = drawCert(k, is).toDataURL('image/png');
+    const back = 'island" data-arg=\'' + JSON.stringify({ i: ctx.i }) + '\'';
+    const gateArg = JSON.stringify({ to: 'share', arg: { i: ctx.i }, back: 'cert', backArg: { i: ctx.i } });
+    const clip = await clipGet(k.id, is.id);
+    if (screen !== 'cert') return;
+    const url = clip ? URL.createObjectURL(clip) : null;
+    app.innerHTML = `${topbar(back)}<div class="center">
+      <img src="${img}" alt="${t('cert')}" style="width:min(100%,420px);border-radius:24px;box-shadow:0 6px 0 var(--sand2)">
+      <div class="pcard" style="width:min(100%,420px);text-align:center">
+        <b>🎙️ ${t('record')}</b><div class="small">${t('recHint')}</div>
+        <div class="ar" id="recls" style="font-size:52px;letter-spacing:14px;color:var(--teal)">${is.letters.map(id => `<span>${L[id].char}</span>`).join(' ')}</div>
+        <div class="prog" id="recbar" style="display:none;margin:6px 0"><i style="width:0%;background:var(--coral)"></i></div>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn" id="rec" style="font-size:19px">${clip ? '🔁 ' + t('redo') : '🎙️ ' + t('record')}</button>
+          ${clip ? `<button class="btn alt" id="hear" style="font-size:19px">▶ ${t('listenMine')}</button>` : ''}
+        </div>
+        <p class="small">🔒 ${t('voiceStays')}</p>
+      </div>
+      <button class="btn sun" data-go="gate" data-arg='${gateArg}'>👪 ${t('shareFam')}</button></div>`;
+    wire();
+    const h = app.querySelector('#hear'); if (h) h.onclick = () => new Audio(url).play().catch(() => {});
+    app.querySelector('#rec').onclick = async ev => {
+      const btn = ev.currentTarget;
+      if (rec && rec.state === 'recording') return stopRec();
+      if (!navigator.mediaDevices || !window.MediaRecorder) return toast(t('noMic'));
+      let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { return toast(t('noMic')); }
+      const mt = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m));
+      const chunks = []; rec = new MediaRecorder(stream, mt ? { mimeType: mt } : undefined);
+      const bar = app.querySelector('#recbar'), spans = app.querySelectorAll('#recls span'), MAX = 10000, t0 = Date.now();
+      btn.textContent = '⏹ ' + t('stop'); bar.style.display = 'block';
+      const tick = setInterval(() => {
+        const f = Math.min(1, (Date.now() - t0) / MAX); bar.firstChild.style.width = f * 100 + '%';
+        spans.forEach((s, j) => s.style.color = j === Math.min(3, (f * 4) | 0) ? 'var(--coral)' : '');
+        if (f >= 1) stopRec();
+      }, 100);
+      rec.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+      rec.onstop = async () => {
+        clearInterval(tick); stream.getTracks().forEach(x => x.stop());
+        const blob = new Blob(chunks, { type: rec.mimeType || mt || 'audio/webm' }); rec = null;
+        if (blob.size) { await clipPut(k.id, is.id, blob); beep(true); }
+        if (screen === 'cert') render();
+      };
+      rec.start(250); sayUI(t('recording'));
+    };
+  },
+  async share() {
+    const k = kid(), is = D.islands[ctx.i]; if (!k || !(k.certs || {})[is.id]) return go('map');
+    const c = drawCert(k, is), png = await canvasBlob(c), clip = await clipGet(k.id, is.id);
+    if (screen !== 'share') return;
+    const msg = t('shareMsg')(k.name, is.name[S.lang]) + ' ' + SITE;
+    const imgF = new File([png], `sindibad-${is.id}.png`, { type: 'image/png' });
+    const clipF = clip ? new File([clip], `sindibad-${is.id}-voice.${audioExt(clip.type)}`, { type: clip.type || 'audio/webm' }) : null;
+    app.innerHTML = `${topbar('cert" data-arg=\'' + JSON.stringify({ i: ctx.i }) + '\'')}<h1>👪 ${t('shareTitle')}</h1>
+      <div class="grid" style="max-width:520px">
+      <img src="${c.toDataURL('image/png')}" alt="" style="width:100%;border-radius:20px">
+      <p class="small">${t('shareIntro')}</p>
+      ${clip ? `<label class="pcard" style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="wv" checked style="width:24px;height:24px"> 🎙️ ${t('withVoice')}</label>` : ''}
+      <button class="btn" id="sh">📤 ${t('shareBtn')}</button>
+      <button class="btn alt" id="wa" style="font-size:18px">💬 ${t('waText')}</button>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn alt" id="dl" style="font-size:16px;flex:1">⬇️ ${t('savePic')}</button>${clip ? `<button class="btn alt" id="dv" style="font-size:16px;flex:1">⬇️ ${t('saveVoice')}</button>` : ''}</div>
+      <p class="small">${t('waNote')}</p></div>`;
+    wire();
+    const counted = () => { k.shares = (k.shares || 0) + 1; save(); };
+    app.querySelector('#sh').onclick = async () => {
+      const wv = app.querySelector('#wv'), files = [imgF].concat(clipF && wv && wv.checked ? [clipF] : []);
+      const can = d => navigator.canShare && navigator.canShare(d);
+      try {
+        if (can({ files, text: msg })) { await navigator.share({ files, text: msg }); }
+        else if (files.length > 1 && can({ files: [imgF], text: msg })) { await navigator.share({ files: [imgF], text: msg }); toast(t('voiceOnlyImg')); }
+        else if (navigator.share) { download(png, imgF.name); await navigator.share({ text: msg }); }
+        else { download(png, imgF.name); window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener'); }
+        counted(); toast(t('sharedOk'));
+      } catch (e) { if (e && e.name !== 'AbortError') toast(t('waNote')); }
+    };
+    app.querySelector('#wa').onclick = () => { counted(); window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener'); };
+    app.querySelector('#dl').onclick = () => download(png, imgF.name);
+    const dv = app.querySelector('#dv'); if (dv) dv.onclick = () => download(clip, clipF.name);
+  }
+});
 
 /* ---------- games ---------- */
 function startGame() {
@@ -319,13 +486,14 @@ function startGame() {
     const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1;
     const kk = kid();
     if (!ctx.review) kk.stars[ctx.id] = Math.max(kk.stars[ctx.id] || 0, stars);
+    else { kk.certs = kk.certs || {}; kk.certs[is.id] = kk.certs[is.id] || today(); }
     kk.minutes = (kk.minutes || 0) + (Date.now() - t0) / 60000;
     const d = today();
     if (kk.lastDay !== d) {
       const y = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
       kk.streak = kk.lastDay === y ? (kk.streak || 0) + 1 : 1; kk.lastDay = d;
     }
-    save(); go('reward', { i: ctx.i, stars });
+    save(); go('reward', { i: ctx.i, stars, cert: !!ctx.review });
   }
   next();
 }
