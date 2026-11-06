@@ -4,14 +4,14 @@
     "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-06T14:02:50-05:00",
+    "updated": "2026-11-06T14:05:53-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
     "domain": "eng",
-    "title": "Island certificate + voice clip + share",
-    "detail": "Building the certificate card, on-device voice recording and parent-gated WhatsApp share in the app",
-    "since": "2026-11-06T14:02:50-05:00"
+    "title": "Paused — next up: anonymous referral codes in share links",
+    "detail": "Press ▶ Next task on the tracker to continue.",
+    "since": "2026-11-06T14:05:53-05:00"
   },
   "links": [
     {
@@ -437,10 +437,17 @@
     {
       "id": "t-share",
       "domain": "eng",
-      "status": "doing",
+      "status": "done",
       "title": "Island certificate + child voice clip + parent-gated WhatsApp share",
       "notes": "Share loop: target k ≥ 0.2 (break-even), 0.4 (goal)",
-      "started": "2026-11-05T18:12:20-05:00"
+      "started": "2026-11-05T18:12:20-05:00",
+      "done": "2026-11-06T14:05:53-05:00",
+      "links": [
+        {
+          "label": "Try it in the app",
+          "url": "https://shibl.github.io/learnArabic/app/"
+        }
+      ]
     },
     {
       "id": "t-ref",
@@ -589,6 +596,11 @@
       "date": "2026-11-06",
       "title": "Next task runs as a claude.ai scheduled task, not GitHub Actions",
       "why": "Owner works from a browser only; a subscription token for GitHub needs a desktop, and an API key would add separate billing."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Share sends files straight from the phone",
+      "why": "Certificate picture and voice clip go via the phone's share sheet to the app the parent picks; nothing is uploaded to us, so no child data leaves the device through our servers."
     }
   ],
   "needsYou": [
@@ -606,6 +618,12 @@
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-06T14:05:53-05:00",
+      "domain": "eng",
+      "text": "Share loop shipped: finishing an island challenge now gives a certificate card with the child's name and 4 letters, a 10-second recording of the child reading them (kept on the phone only), and a parent-gated Share button (WhatsApp/Messages via the share sheet, or a WhatsApp text link). Parent corner counts certificates and shares, on device.",
+      "link": "https://shibl.github.io/learnArabic/app/"
+    },
     {
       "ts": "2026-11-06T14:02:11-05:00",
       "domain": "eng",
