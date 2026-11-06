@@ -201,7 +201,7 @@ function render(){
   $('phase').textContent=P.phase;
   $('dayn').textContent=Math.max(1,Math.floor((Date.now()-new Date(P.started))/864e5)+1);
   const n=D.now||{},nd=dom(n.domain);
-  $('now').innerHTML=`<div class="lbl">Working on right now · since ${esc(ago(n.since))}</div><span class="dom">${esc(nd.icon)} ${esc(nd.name)}</span><span class="t">${esc(n.title)}</span><div class="d">${esc(n.detail||'')}</div>`;
+  runs();$('now').innerHTML=`<div class="lbl">Working on right now · since ${esc(ago(n.since))}</div><span class="dom">${esc(nd.icon)} ${esc(nd.name)}</span><span class="t">${esc(n.title)}</span><div class="d">${esc(n.detail||'')}</div>`;
   $('links').innerHTML=(D.links||[]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.icon||'↗')} ${esc(l.label)}</a>`).join('');
   const tasks=D.tasks||[];
   $('domains').innerHTML=D.domains.map(d=>{const t=tasks.filter(x=>x.domain===d.id),done=t.filter(x=>x.status==='done').length,pct=t.length?Math.round(done/t.length*100):0,doing=t.filter(x=>x.status==='doing').length;
@@ -245,16 +245,12 @@ function renderPanel(){
     </div></div>`;
   $('dpx').onclick=()=>openDomain(null);
 }
-const NEW_RUN=`https://github.com/${REPO}/issues/new?title=${encodeURIComponent('Next task')}&body=${encodeURIComponent('Optional: replace this line with a note for this run (e.g. "do the short-vowel lessons next", or a decision from Needs you). Leave it as is to let Claude pick the top task on the board.')}`;
-async function runs(){
-  const b=$('gobtn'),st=$('gost');b.href=NEW_RUN;
-  try{const r=await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/next-task.yml/runs?per_page=1`);if(!r.ok)throw 0;
-    const x=(await r.json()).workflow_runs?.[0];
-    if(!x){st.innerHTML='No runs yet — press to start the first one (opens GitHub; press <b>Submit</b>).';b.classList.remove('busy');return}
-    const live=x.status!=='completed';b.classList.toggle('busy',live);b.textContent=live?'⏳ Working…':'▶ Next task';
-    const res=live?`<b>running</b> since ${esc(ago(x.run_started_at||x.created_at))}`:`last run <b>${esc(x.conclusion||'done')}</b> ${esc(ago(x.updated_at))}`;
-    st.innerHTML=`${res} · <a href="${esc(x.html_url)}" target="_blank" rel="noopener">log</a>${live?'':' · opens GitHub, then press <b>Submit</b>'}`;
-  }catch(e){st.innerHTML='Opens GitHub — press <b>Submit</b> to start a run.';b.classList.remove('busy')}
+const NEXT_TASK='https://claude.ai/artifact/4BYWVMCV3ZteFu79epyMCL';
+function runs(){
+  const b=$('gobtn'),st=$('gost');b.href=NEXT_TASK;
+  const n=DATA&&DATA.now&&DATA.now.title||'';
+  const paused=/^Paused/i.test(n);
+  st.innerHTML=paused?'Opens on claude.ai (sign in), then press <b>Start next task</b>.':'<b>A session is working right now</b> — see the line above.';
 }
 async function commits(){
   try{const r=await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=12`);if(!r.ok)throw 0;const c=await r.json();
@@ -271,7 +267,7 @@ async function fin(){
 }
 if(location.hash.length>1)FILTER=decodeURIComponent(location.hash.slice(1));
 window.addEventListener('hashchange',()=>openDomain(location.hash.slice(1)||null));
-load().then(()=>{if(FILTER){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({block:'start'})}});commits();fin();runs();setInterval(runs,120000);setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
+load().then(()=>{if(FILTER){const c=document.querySelector('#dpanel .card');c&&c.scrollIntoView({block:'start'})}});commits();fin();setInterval(fin,300000);setInterval(load,60000);setInterval(commits,300000);setInterval(()=>DATA&&render(),30000);
 </script>
 </body>
 </html>

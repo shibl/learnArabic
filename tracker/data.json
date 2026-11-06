@@ -4,7 +4,7 @@
     "nameAr": "حروف سندباد",
     "tagline": "An app that helps children of Arab families living abroad read, speak and love Arabic — playful, short daily sessions, built with parents in the loop.",
     "started": "2026-11-05T17:45:00-05:00",
-    "updated": "2026-11-05T21:43:25-05:00",
+    "updated": "2026-11-06T14:02:11-05:00",
     "phase": "0 · Foundation"
   },
   "now": {
@@ -473,7 +473,7 @@
       "domain": "eng",
       "status": "done",
       "title": "▶ Next task button on the tracker (GitHub Action runs Claude)",
-      "notes": "Button opens a 'Next task' issue; the workflow runs one task, updates the tracker, closes the issue",
+      "notes": "Button opens a claude.ai page that starts a cloud session on your Claude plan; no GitHub setup needed",
       "done": "2026-11-05T21:43:25-05:00",
       "links": [
         {
@@ -584,6 +584,11 @@
       "date": "2026-11-05",
       "title": "School partners earn 20% of subscriptions they refer",
       "why": "Weekend schools need funding; revenue share turns them into active promoters at near-zero acquisition cost."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Next task runs as a claude.ai scheduled task, not GitHub Actions",
+      "why": "Owner works from a browser only; a subscription token for GitHub needs a desktop, and an API key would add separate billing."
     }
   ],
   "needsYou": [
@@ -598,13 +603,14 @@
     {
       "title": "Send the audio zip",
       "detail": "When recording is done, attach the zip in chat. Guide: docs/10-audio-recording-guide.md"
-    },
-    {
-      "title": "Connect Claude to GitHub (one-time, ~5 min)",
-      "detail": "1) Install the Claude GitHub App on shibl/learnArabic: github.com/apps/claude. 2) On your computer run 'claude setup-token' and copy the token. 3) Repo Settings → Secrets and variables → Actions → New secret named CLAUDE_CODE_OAUTH_TOKEN, paste the token. Then ▶ Next task works."
     }
   ],
   "log": [
+    {
+      "ts": "2026-11-06T14:02:11-05:00",
+      "domain": "eng",
+      "text": "▶ Next task now runs on the owner's Claude plan: the tracker button opens a private claude.ai page that starts a cloud work session (one task, then stops). Removed the GitHub Actions version — no token or secrets needed."
+    },
     {
       "ts": "2026-11-05T21:43:25-05:00",
       "domain": "eng",
